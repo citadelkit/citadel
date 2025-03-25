@@ -17,9 +17,10 @@ class CitadelServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../resources/js/' => public_path('citadelkit/citadel'),
-        ], 'public');
+            __DIR__ . '/../public/' => public_path('citadelkit/citadel'),
+        ], 'citadel');
         $this->loadViewsFrom(__DIR__."/../resources/views/components", 'citadel-component');
         $this->loadViewsFrom(__DIR__."/../resources/views/templates", 'citadel-template');
+        $this->mergeConfigFrom(__DIR__."/../config/citadel.php", 'citadel-config');
     }
 }

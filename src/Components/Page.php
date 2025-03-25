@@ -6,6 +6,13 @@ use Citadel\Core\Layout;
 
 class Page extends Layout {
     protected $view = "citadel-template::core";
+    protected $page_setup = [];
+
+    public function __construct()
+    {
+        $this->view = config('citadel-config.views.page');
+        $this->page_setup = config('citadel-config.template');
+    }
 
     public function view($viewName)
     {
