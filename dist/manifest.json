@@ -1,0 +1,19 @@
+{
+  "resources/css/main.scss": {
+    "file": "assets/main-d84dc806.css",
+    "isEntry": true,
+    "src": "resources/css/main.scss"
+  },
+  "resources/js/index.css": {
+    "file": "assets/index-cba455a8.css",
+    "src": "resources/js/index.css"
+  },
+  "resources/js/index.js": {
+    "css": [
+      "assets/index-cba455a8.css"
+    ],
+    "file": "assets/main-e6616c43.js",
+    "isEntry": true,
+    "src": "resources/js/index.js"
+  }
+}

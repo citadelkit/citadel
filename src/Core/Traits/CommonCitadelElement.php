@@ -10,6 +10,11 @@ trait CommonCitadelElement {
     protected $show = true;
     protected $class = "";
 
+    public function __construct()
+    {
+        $this->config = config('citadel-config');
+    }
+
     public function show($show = true)
     {
         $this->show = $show;

@@ -1,0 +1,19 @@
+{
+  "src/resources/css/main.scss": {
+    "file": "assets/citadel2.css",
+    "isEntry": true,
+    "src": "src/resources/css/main.scss"
+  },
+  "src/resources/js/index.css": {
+    "file": "assets/citadel.css",
+    "src": "src/resources/js/index.css"
+  },
+  "src/resources/js/index.js": {
+    "css": [
+      "assets/citadel.css"
+    ],
+    "file": "citadel.js",
+    "isEntry": true,
+    "src": "src/resources/js/index.js"
+  }
+}

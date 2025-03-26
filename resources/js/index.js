@@ -16,7 +16,6 @@ import { getPlugins } from "./helpers/plugins";
         $('[citadel-table], .citadel-table').CTable()
         // setWizard($('[citadel-wizard]'))
         $('[citadel-wizard]').CWizard()
-        // setModal($('[citadel-modal]'))
         $('[citadel-modal]').CModal()
         // setSelectize($('select[citadel-input]'))
         $('select[citadel-input], .citadel-select').CSelect()

@@ -1,0 +1,114 @@
+
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #975AFF;
+    --secondary: #616D89;
+    --success: #40C057;
+    --info: #2F8BE6;
+    --warning: #F77E17;
+    --danger: #F55252;
+    --light: #DBDEE5;
+    --dark: #1A051D;
+    --font-family-sans-serif: 'Poppins', sans-serif !important;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+:root table[citadel-table] td {
+    padding: 10px 6px;
+}
+
+// // Bootstrap
+@import "~/bootstrap/dist/css/bootstrap.min.css";
+@import '~/datatables.net-bs5/css/dataTables.bootstrap5.min.css';
+@import "~/bootstrap-daterangepicker/daterangepicker.css";
+@import "~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
+@import "~/bootstrap-table/dist/bootstrap-table.min.css";
+// @import "~/bootstrap-tagsinput/dist/bootstrap-tagsinput.css";
+// @import "~/bootstrap-toggle/css/bootstrap-toggle.min.css";
+// @import "../plugins//boxed-check/css/boxed-check.min.css";
+// Other plugins
+@import "~/chosen-js/chosen.min.css";
+@import "~/dragtable/dragtable.css";
+// @import "~/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css";
+@import "~/@fortawesome/fontawesome-free/css/all.min.css";
+@import "~/font-awesome/css/font-awesome.min.css";
+@import "~/icheck/skins/flat/flat.css";
+// @import "~/jasny-bootstrap/dist/css/jasny-bootstrap.min.css";
+@import "~/jquery-ui-dist/jquery-ui.min.css";
+@import "~/jquery-ui-dist/jquery-ui.theme.min.css";
+// @import "~/jvectormap/jquery-jvectormap-2.0.2.ccsss";
+// @import "~/morris.js06/morris.css";
+@import "~/pace-js/themes/blue/pace-theme-minimal.css";
+@import "~/perfect-scrollbar/css/perfect-scrollbar.css";
+@import "~/select2/dist/css/select2.min.css";
+@import "~/@selectize/selectize/dist/css/selectize.bootstrap5.css"; // Or selectize.bootstrap5.css for Bootstrap 5 styling
+// @import "~/selectize/dist/css/selectize.bootstrap4.css";
+@import "~/summernote/dist/summernote-bs5.css";
+@import "~/switchery/switchery.css";
+@import "~/toastr/build/toastr.min.css";
+@import './custom-bootstrap.scss';
+@import './colors.css';
+@import './components.css';
+@import './bootstrap-extended.css';
+@import './style.css';
+@import './animate.css';
+@import './fonts.css';
+@import './bootstraptoggle.css';
+// // @import '@plugins/jasny-bootstrap-4.0.0/css/jasny-bootstrap.min.css';
+// // @import '@plugins/font-awesome/css/font-awesome.min.css';
+// @import '@plugins/feather/style.min.css';
+// // @import '@plugins/icheck/skins/flat/flat.css';
+// // @import '@plugins/morris.js/morris.css';
+// // @import '@plugins/jvectormap/jquery-jvectormap-2.0.2.css';
+// // @import '@plugins/bootstrap-daterangepicker/daterangepicker-bs3.css';
+// // @import '@plugins/bootstrap3-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css';
+// // @import '@plugins/bootstrap-table/dist/bootstrap-table.min.css';
+// // @import '@plugins/dragtable/dragtable.css';
+// // @import '@plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css';
+// // @import '@plugins/select2/dist/css/select2.min.css';
+// // @import '@plugins/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css';
+// // @import '@plugins/jquery-ui/themes/ui-lightness/jquery-ui.min.css';
+// // @import '@plugins/jquery-ui/themes/ui-lightness/theme.css';
+// // @import '@plugins/pace/minimal.css';
+// // @import '@plugins/icheck/custom.css';
+// // @import '@plugins/summernote/summernote-bs3.css';
+// // @import '@plugins/toastr/toastr.min.css';
+// // @import '@plugins/switchery.css';
+// // @import '@plugins/selectize.js/dist/css/selectize.bootstrap4.css';
+// // @import '@plugins/chosen/chosen.min.css';
+@import '~/filepond/dist/filepond.min.css';
+@import './citadel.css';
+// @import '@plugins/perfect-scrollbar/css/perfect-scrollbar.min.css';
+@import './custom.css';
+// // @import url(https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css);
+
+
+// @-moz-keyframes spin {
+//     from { -moz-transform: rotateZ(0deg); }
+//     to { -moz-transform: rotateZ(360deg); }
+// }
+// @-webkit-keyframes spin {
+//     from { -webkit-transform: rotateZ(0deg); }
+//     to { -webkit-transform: rotateZ(360deg); }
+// }
+// @keyframes spin {
+//     from {transform:rotateZ(0deg);}
+//     to {transform:rotateZ(360deg);}
+// }
+
+
+// i.ft-loader {
+//     animation: spin 1s linear infinite; /* spin 1s linear infinite */
+// }

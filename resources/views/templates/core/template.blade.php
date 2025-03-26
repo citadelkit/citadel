@@ -8,11 +8,12 @@
         <title>
             @yield('title') - @yield('code')
         </title>
+        
     @endif
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <base href="{{ url('/') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @include('template.head')
+    @include('citadel-template::core.head')
 
     <script type="text/javascript" src="{{ asset('assets/app-assets/citadel_app.js') }}"></script>
 
@@ -131,56 +132,31 @@
     @stack('body')
     @stack('modal')
 
-    <script src="{{ asset('assets/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap-table/dist/bootstrap-table.js') }}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap-table/dist/extensions/cookie/bootstrap-table-cookie.min.js') }}">
-    </script>
-
     <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.min.js"></script> --}}
 
     <!-- LoadingOverylay -->
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
+    {{-- <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+ --}}
 
+    {{-- <script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script> --}}
 
-    <script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+    {{-- <script type="text/javascript" src="assets/js/bottom.js"></script> --}}
 
-    <script type="text/javascript" src="assets/js/bottom.js"></script>
-    <div id="ajax-modal" class="modal fade" tabindex="-1"></div>
-
-    <script type="text/javascript" src="{{ asset('assets/app-assets/js/core/app-menu.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/app-assets/js/core/app-menu.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/js/toastr/toastr.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/js/core/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/js/scroll-top.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/js/components-modal.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/vendors/js/sweetalert2.all.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/app-assets/js/components-popover.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/app-assets/js/jquery.mask.min.js') }}"></script>
-git
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    @vite(['resources/js/simplebar.js', 'resources/js/app.js',])
+    <script type="text/javascript" src="{{ asset('assets/app-assets/js/jquery.mask.min.js') }}"></script> --}}
 
-    @if (Auth::user())
-    @vite(['resources/js/bootstrap.js'])
-    @endif
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
+    {{-- @vite(['resources/js/simplebar.js', 'resources/js/app.js',]) --}}
 
-    @yield('script')
-
-    <style>
-        .content-header {
-            color: #0e1825;
-        }
-
-        th {
-            white-space: nowrap;
-        }
-    </style>
-
-    {!! Toastr::message() !!}
-    {{-- @include('citadel::includes.scripts') --}}
 </body>
 
 </html>

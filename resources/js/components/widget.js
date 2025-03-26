@@ -1,5 +1,5 @@
 import { addQueryParams } from '../helpers';
-
+import axios from 'axios';
 
 export default async function CitadelWidget(el) {
     if(el.is('[citadel-widget]')) {

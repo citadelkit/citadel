@@ -10,8 +10,10 @@ export default function CitadelSelect(el) {
     const c = JSON.parse(el.attr('config'));
     const id = el.attr('id')
 
-
-    config = {
+    if(c.config == undefined) {
+        return;
+    }
+    let config = {
         // plugins: ["clear_button"],
         dropdownParent: el.parent(),
         showAddOptionOnCreate: false,

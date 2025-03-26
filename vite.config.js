@@ -1,27 +1,41 @@
 import { defineConfig } from "vite";
-import path from 'path';
+import path from "path";
 import jquery from "jquery";
+import postcss from "@vituum/vite-plugin-postcss";
 
 export default defineConfig({
     resolve: {
         alias: {
-            '~': path.resolve(__dirname, "node_modules"),
-            '@plugins': path.resolve(__dirname, './resources/plugins'),
-            'jQuery': jquery
+            "~": path.resolve(__dirname, "node_modules"),
+            "@plugins": path.resolve(__dirname, "./resources/plugins"),
+            "jQuery": jquery,
+        }
+    },
+    plugins: [
+        postcss()
+    ],
+    server: {
+        origin: "http://localhost:5174", // Allows external access
+        hmr: {
+            host: "localhost" // Ensure HMR (Hot Module Replacement) works
+        },
+        watch: {
+            usePolling: true // Ensures file changes are detected
         }
     },
     build: {
-        outDir: "src/public/",
+        manifest: true,
+        outDir: "dist", // ⬅️ Fix: Build output should go here (not `src/public/`)
         rollupOptions: {
             input: {
-                main: 'src/resources/js/index.js', // Entry utama
+                main: "resources/js/index.js", 
+                style: "resources/css/main.scss"
             },
             output: {
-                entryFileNames: 'citadel.js', // Nama file hasil bundling
-                chunkFileNames: 'chunks/citadel-[hash].js', // File chunk
-                assetFileNames: 'assets/citadel-[hash].[ext]', // File asset
-                manualChunks: undefined,
+                entryFileNames: "assets/[name]-[hash].js", // ⬅️ Keep hashes for caching
+                chunkFileNames: "assets/chunks/[name]-[hash].js",
+                assetFileNames: "assets/[name]-[hash].[ext]" // ⬅️ Keep hashes
             }
-        },
-    },
+        }
+    }
 });
