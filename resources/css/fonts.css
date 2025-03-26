@@ -1,8 +1,17 @@
+@import '@gitzjoey/feather-font/src/css/iconfont.css';
+
 @font-face {
-	font-family: 'Open Sans';
+	font-family: "Open Sans";
 	src: url(/resources/fonts/open-sans/OpenSans-Regular.ttf);
 }
 @font-face {
-	font-family: 'Roboto';
+	font-family: "Roboto";
 	src: url(/resources/fonts/roboto/Roboto-Regular.ttf);
+}
+
+.feather {
+	margin-right: 3px;
+    /* font-size: large; */
+    user-select: none !important;
+    pointer-events: none !important;
 }
