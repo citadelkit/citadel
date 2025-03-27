@@ -2,16 +2,22 @@ import { defineConfig } from "vite";
 import path from "path";
 import jquery from "jquery";
 import postcss from "@vituum/vite-plugin-postcss";
+import inject from "@rollup/plugin-inject";
 
 export default defineConfig({
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "node_modules"),
-            "@plugins": path.resolve(__dirname, "./resources/plugins"),
-            "jQuery": jquery,
+            '@support': path.resolve(__dirname, "support")
         }
     },
     plugins: [
+        inject({
+            $: 'jquery',
+            jQuery: 'jquery',
+            bootstrap: 'bootstrap/dist/js/bootstrap.bundle.min.js',
+            feather: 'feather-icons'
+        }),
         postcss()
     ],
     server: {

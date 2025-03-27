@@ -8,110 +8,16 @@
         <title>
             @yield('title') - @yield('code')
         </title>
-        
     @endif
+
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <base href="{{ url('/') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     @include('citadel-template::core.head')
-
-    <script type="text/javascript" src="{{ asset('assets/app-assets/citadel_app.js') }}"></script>
-
-    <style>
-        .citadel-section {
-            position: relative;
-        }
-
-        .see-more {
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-            height: 400px;
-            transition: height .7s;
-            -o-transition: height .7s;
-            -webkit-transition: height .7s;
-            -moz-transition: height .7s;
-        }
-
-        .see-more.enlarge {
-            height: 100%;
-        }
-
-        .citadel-see-more {
-            position: absolute;
-            padding: 20px;
-            right: 0;
-            left: 0;
-            bottom: 0px;
-            display: flex;
-            justify-content: flex-end;
-            background: linear-gradient(0deg, rgba(255, 255, 255, 0.7) 22%, rgba(255, 255, 255, 0) 100%);
-            z-index: 100;
-        }
-
-        .see-more.enlarge .citadel-see-more {
-            background: none;
-        }
-
-        .see-more.enlarge .citadel-section-expand {
-            display: none;
-        }
-
-
-        .see-more .citadel-section-collapse {
-            display: none;
-        }
-
-        .see-more.enlarge .citadel-section-collapse {
-            display: flex;
-        }
-
-        .citadel-see-more a {
-            color: #2aace3;
-            border-bottom: .4px solid #2aace3;
-        }
-
-        #citadel-floaters .action_button a {
-            font-size: 2rem;
-        }
-
-        .transition-all {
-            transition: all .2s ease-in-out;
-        }
-
-        .floaters-content {
-            max-height: 100vh;
-            overflow: auto;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ asset('vendor/citadel/citadel.css') }}"/>
-    @if ($is_view_only ?? null)
-        <style>
-            input:not([class*="swal2"] input),
-            select:not([class*="swal2"] select),
-            .ck {
-                pointer-events: none;
-                border-color: transparent;
-                background: transparent;
-            }
-
-            .note-toolbar
-            .note-editing-area,
-            .select2 {
-                pointer-events: none;
-
-            }
-
-            .add {
-                display: none;
-            }
-        </style>
-    @endif
-
 </head>
 
-<body @if (isset($controller_name) && in_array($controller_name, ['aset', 'inventory', 'administration'])) ng-app='{{ $controller_name }}' @endif
-    class="vertical-layout vertical-menu 2-columns navbar-sticky nav-collapsed" data-menu="vertical-menu" data-col="2-columns"
+<body class="vertical-layout vertical-menu 2-columns navbar-sticky nav-collapsed" data-menu="vertical-menu" data-col="2-columns"
     x-data="{ sidebarOpen: false }" :class="sidebarOpen ? '' : 'nav-collapsed'">
     @if (Auth::user())
         @include('citadel-template::core.header')

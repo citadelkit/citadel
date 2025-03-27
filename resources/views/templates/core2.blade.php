@@ -1,4 +1,4 @@
-@extends('citadel-template::core.template')
+@extends('citadel-template::dash.layout')
 @section('content')
 <div style="">
     <div class="gradient-wika" style="padding-bottom: 8.5rem !important; padding-top: 3rem !important">
