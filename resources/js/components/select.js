@@ -1,4 +1,4 @@
-import 'select2';
+import Select2 from 'select2';
 import '@selectize/selectize';
 import { citadelFetchComponentLifeCycle } from '../helpers';
 
@@ -27,7 +27,12 @@ export default function CitadelSelect(el) {
         }
     }
 
-    el.select2(config)
+    new Select2({
+        $container: el,
+        options: { options: config }
+    })
+
+    // el.select2(config)
 
 
 }

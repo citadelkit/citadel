@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import path from "path";
-import jquery from "jquery";
 import postcss from "@vituum/vite-plugin-postcss";
 import inject from "@rollup/plugin-inject";
+
 
 export default defineConfig({
     resolve: {
@@ -13,17 +13,18 @@ export default defineConfig({
     },
     plugins: [
         inject({
-            $: 'jquery',
-            jQuery: 'jquery',
+            include: ['**/*.js', '**/*.ts'],
             bootstrap: 'bootstrap/dist/js/bootstrap.bundle.min.js',
             feather: 'feather-icons'
         }),
         postcss()
     ],
     server: {
+        host: "localhost",
+        port: 5174,
         origin: "http://localhost:5174", // Allows external access
         hmr: {
-            host: "localhost" // Ensure HMR (Hot Module Replacement) works
+            host: "localhost", // Ensure HMR (Hot Module Replacement) works
         },
         watch: {
             usePolling: true // Ensures file changes are detected
@@ -34,7 +35,7 @@ export default defineConfig({
         outDir: "dist", // ⬅️ Fix: Build output should go here (not `src/public/`)
         rollupOptions: {
             input: {
-                main: "resources/js/index.js", 
+                main: "resources/js/index.js",
                 style: "resources/css/main.scss"
             },
             output: {

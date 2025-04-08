@@ -14,7 +14,7 @@
         <div id="page-content">
             @include('citadel-template::dash.header')
             <!-- Container fluid -->
-            <div class="container-fluid px-6 py-4">
+            <div class="container-fluid px-0">
                 @yield('content')
             </div>
         </div>

@@ -20,7 +20,7 @@ async function init(el)
 
 async function handleReactive(el, name)
 {
-    el.LoadingOverlay('show')
+    $(el).loadingOverlay()
     axios.get(addQueryParams(location.href, {
         f: "reactive",
         c: name
@@ -29,7 +29,7 @@ async function handleReactive(el, name)
     }).catch(errors => {
         console.log(errors);
     }).finally(() => {
-        el.LoadingOverlay('hide')
+        $(el).loadingOverlay('remove')
     })
 }
 

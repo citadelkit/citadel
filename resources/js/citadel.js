@@ -3,6 +3,7 @@ import { startObserver } from "./helpers";
 import { getPlugins } from "./helpers/plugins";
 
 (function (window, document, $) {
+    // CitadelSpinner('document')
     const reinstance = () => {
         $('.filepond').CFilepond()
         $('.offcanvas, .flyout').CFlyout()
@@ -64,9 +65,9 @@ import { getPlugins } from "./helpers/plugins";
         if(dataMenu == undefined) return;
         const $navigation = $('.navigation-main'); // Cache the navigation element
         $navigation.html("");
-        $('.app-sidebar').LoadingOverlay("show");
+        $('.app-sidebar').loadingOverlay();
         $navigation.append(dataMenu.map(createMenuItem));
-        $('.app-sidebar').LoadingOverlay("hide");
+        $('.app-sidebar').loadingOverlay("remove");
     }
 
     const createMenuItem = (item, hasParent = false) => {

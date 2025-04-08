@@ -1,10 +1,13 @@
-import 'jquery-slimscroll/jquery.slimscroll.min.js';
-import 'prismjs/prism.js';
-import 'apexcharts/dist/apexcharts.min.js';
-import 'dropzone';
-import 'prismjs/plugins/toolbar/prism-toolbar.min.js';
-import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js';
-import '@support/dash-ui/src/assets/js/main.js';
-import '@support/dash-ui/src/assets/js/feather.js';
-import '@support/dash-ui/src/assets/js/sidebarMenu.js';
+import './shim-dependency.js';
+
 import './citadel.js';
+
+$(document).ready(function () {
+    console.log("jQuery ready, initializing Select2!");
+
+    // Inisialisasi Select2 ke semua elemen <select> yang punya class .select2
+    $(".select2").select2({
+        placeholder: "Pilih opsi...",
+        allowClear: true
+    });
+});
