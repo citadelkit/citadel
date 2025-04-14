@@ -2,7 +2,7 @@
     <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <div class="avatar avatar-md avatar-indicators avatar-online">
-            <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-1.jpg') }}" class="rounded-circle" />
+            <img alt="avatar" src="{{ $user['image'] }}" class="rounded-circle" />
         </div>
     </a>
 

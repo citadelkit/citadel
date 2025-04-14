@@ -9,10 +9,10 @@
 <body class="bg-light">
     <div id="db-wrapper">
         <!-- navbar vertical -->
-        @include('citadel-template::dash.navbar-vertical')
+        {!! $sidebar !!}
         <!-- page content -->
         <div id="page-content">
-            @include('citadel-template::dash.header')
+            {!! $header !!}
             <!-- Container fluid -->
             <div class="container-fluid px-0">
                 @yield('content')

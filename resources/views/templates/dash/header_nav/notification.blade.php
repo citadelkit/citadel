@@ -17,8 +17,8 @@
                 @foreach ($notifications as $notification)
                     <li class="list-group-item {{ $loop->first ? 'bg-light' : '' }}">
                         <a href="#" class="text-muted">
-                            <h5 class="mb-1">{{ $notification['name'] }}</h5>
-                            <p class="mb-0">{{ $notification['message'] }}</p>
+                            <h5 class="mb-1">{{ $notification['title'] }}</h5>
+                            <p class="mb-1">{!! $notification['message'] !!}</p>
                         </a>
                     </li>
                 @endforeach

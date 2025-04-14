@@ -10,5 +10,8 @@ return [
             'resources/js/app.js',
             'resources/js/bootstrap.js',
         ]
-    ]
+    ],
+    'sidebar' => \Citadel\Handler\SidebarHandler::class,
+    'header' => \Citadel\Handler\HeaderHandler::class
+
 ];

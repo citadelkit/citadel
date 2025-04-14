@@ -7,16 +7,18 @@
     </div>
 @endif
 
-<div id="{{$name}}" style="{{$style['colspan']}} width: 100%;" class="overflow-hidden">
-    <table id="{{$name}}" class="citadel-table table dataTable"
-        config="{{ json_encode($definition) }}">
-        <thead>
-            <tr>
-                {!! $columns !!}
-            </tr>
-        </thead>
-        <tbody>
-            <tr></tr>
-        </tbody>
-    </table>
+<div id="{{$name}}" style="{{$style['colspan']}} width: 100%;" class="bg-white table-sm table-striped">
+    <div class="overflow-auto">
+        <table id="{{$name}}" class="citadel-table table dataTable"
+            config="{{ json_encode($definition) }}">
+            <thead>
+                <tr>
+                    {!! $columns !!}
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
 </div>

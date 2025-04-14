@@ -1,3 +1,3 @@
 <header style="{{ $style['colspan'] }}" class="mb-2 {{ $style['class'] }}">
-    <span>{!! $text !!}</span>
+    <span class="display-6">{!! $text !!}</span>
 </header>
