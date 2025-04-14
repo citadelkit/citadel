@@ -30,6 +30,11 @@ class CitadelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../dist' => public_path('citadelkit'),
         ], 'citadel');
+        
+        $this->publishes([
+            __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),
+        ], 'citadel');
+
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/components", 'citadel-component');
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/templates", 'citadel-template');
         $this->mergeConfigFrom(__DIR__ . "/../config/citadel.php", 'citadel-config');

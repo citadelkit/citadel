@@ -1,4 +1,7 @@
 <x-nav-container>
+    @slot('brand')
+        {!! $brand !!}
+    @endslot
     @slot('content')
         <x-nav-menu-item title="Dashboard" icon="home">
             <x-nav-menu-item title="Monitoring" href="{{ route('admin.dashboard') }}" icon="activity" />
