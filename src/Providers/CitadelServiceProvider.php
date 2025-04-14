@@ -2,6 +2,12 @@
 
 namespace Citadel\Providers;
 
+use Citadel\View\Components\HeaderNavContainer;
+use Citadel\View\Components\HeaderNavMenuItem;
+use Citadel\View\Components\HeaderNavNotification;
+use Citadel\View\Components\HeaderNavSearch;
+use Citadel\View\Components\HeaderNavToggle;
+use Citadel\View\Components\HeaderNavUser;
 use Citadel\View\Components\NavContainer;
 use Citadel\View\Components\NavHeading;
 use Citadel\View\Components\NavMenuItem;
@@ -31,5 +37,11 @@ class CitadelServiceProvider extends ServiceProvider
         Blade::component('nav-container', NavContainer::class);
         Blade::component('nav-menu-item', NavMenuItem::class);
         Blade::component('nav-heading', NavHeading::class);
+        Blade::component('header-nav-container', HeaderNavContainer::class);
+        Blade::component('header-nav-toggle', HeaderNavToggle::class);
+        Blade::component('header-nav-search', HeaderNavSearch::class);
+        Blade::component('header-nav-user', HeaderNavUser::class);
+        Blade::component('header-nav-notification', HeaderNavNotification::class);
+        Blade::component('header-nav-menu-item', HeaderNavMenuItem::class);
     }
 }

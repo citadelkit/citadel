@@ -6,7 +6,7 @@ use Citadel\Components\Support\Icon;
 use Citadel\View\Group\VerticalNavigation;
 use Illuminate\View\Component;
 
-class NavMenuItem extends VerticalNavigation
+class HeaderNavMenuItem extends VerticalNavigation
 {
     public function __construct(
         public $icon = Icon::Activity,
@@ -19,6 +19,6 @@ class NavMenuItem extends VerticalNavigation
     public function render()
     {
         $this->icon = Icon::render($this->icon);
-        return view("citadel-template::dash.nav.menu-item");
+        return view("citadel-template::dash.header_nav.menu-item");
     }
 }

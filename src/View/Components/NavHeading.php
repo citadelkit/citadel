@@ -3,9 +3,10 @@
 namespace Citadel\View\Components;
 
 use Citadel\Components\Support\Icon;
+use Citadel\View\Group\VerticalNavigation;
 use Illuminate\View\Component;
 
-class NavHeading extends Component
+class NavHeading extends VerticalNavigation
 {
     public function __construct(
         public $icon = Icon::Activity,
