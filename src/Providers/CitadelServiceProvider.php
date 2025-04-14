@@ -2,6 +2,10 @@
 
 namespace Citadel\Providers;
 
+use Citadel\View\Components\NavContainer;
+use Citadel\View\Components\NavHeading;
+use Citadel\View\Components\NavMenuItem;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,5 +27,9 @@ class CitadelServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/components", 'citadel-component');
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/templates", 'citadel-template');
         $this->mergeConfigFrom(__DIR__ . "/../config/citadel.php", 'citadel-config');
+
+        Blade::component('nav-container', NavContainer::class);
+        Blade::component('nav-menu-item', NavMenuItem::class);
+        Blade::component('nav-heading', NavHeading::class);
     }
 }

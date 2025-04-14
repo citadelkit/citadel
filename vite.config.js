@@ -14,7 +14,6 @@ export default defineConfig({
     plugins: [
         inject({
             include: ['**/*.js', '**/*.ts'],
-            bootstrap: 'bootstrap/dist/js/bootstrap.bundle.min.js',
             feather: 'feather-icons'
         }),
         postcss()

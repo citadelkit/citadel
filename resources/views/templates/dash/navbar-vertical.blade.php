@@ -1,206 +1,81 @@
- <!-- Sidebar -->
- <nav class="navbar-vertical navbar">
-    <div class="nav-scroller">
-        <!-- Brand logo -->
-        <a class="navbar-brand" href="@@webRoot/index.html">
-            <img src="@@webRoot/assets/images/brand/logo/logo.svg" alt="" />
-        </a>
-        <!-- Navbar nav -->
-        <ul class="navbar-nav flex-column" id="sideNavbar">
-            <li class="nav-item">
-                <a class="nav-link has-arrow @@if (context.page ===  'dashboard') { active }" href="@@webRoot/index.html">
-                    <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Dashboard
-                </a>
+<x-nav-container>
+    @slot('content')
+        <x-nav-menu-item title="Dashboard" icon="home">
+            <x-nav-menu-item title="Monitoring" href="{{ route('admin.dashboard') }}" icon="activity" />
+            <x-nav-menu-item title="Task" href="{{ route('admin.task') }}" icon="check-square" />
+        </x-nav-menu-item>
 
-            </li>
+        <x-nav-menu-item title="Administrasi" icon="shield">
+            <x-nav-menu-item title="Master Data" icon="database" parent="Administrasi">
+                <x-nav-menu-item title="Purchasing Group"
+                    href="{{ route('admin.administrator.master_data.purchasing_group.index') }}" icon="shopping-cart" />
+                <x-nav-menu-item title="Currency" href="{{ route('admin.administrator.master_data.currency.index') }}"
+                    icon="dollar-sign" />
+                <x-nav-menu-item title="Delivery Points"
+                    href="{{ route('admin.administrator.master_data.delivery_points.index') }}" icon="map-pin" />
+                <x-nav-menu-item title="UOMs" href="{{ route('admin.administrator.master_data.uoms.index') }}"
+                    icon="sliders" />
+                <x-nav-menu-item title="Incoterms" href="{{ route('admin.administrator.master_data.incoterm.index') }}"
+                    icon="globe" />
+                <x-nav-menu-item title="Tax Code" href="{{ route('admin.administrator.master_data.tax_code.index') }}"
+                    icon="percent" />
+                <x-nav-menu-item title="Risk Assesment Subjects"
+                    href="{{ route('admin.administrator.master_data.risk_assesment_subjects.index') }}"
+                    icon="alert-circle" />
+                <x-nav-menu-item title="Rancangan Kerja dan Syarat (RKS)"
+                    href="{{ route('admin.administrator.master_data.rks.index') }}" icon="clipboard" />
+                <x-nav-menu-item title="News" href="{{ route('admin.administrator.news.index') }}" icon="file-text" />
+                <x-nav-menu-item title="Department"
+                    href="{{ route('admin.administrator.master_data.department_division.index') }}" icon="briefcase" />
+                <x-nav-menu-item title="Purchase Request Type"
+                    href="{{ route('admin.administrator.master_data.purchase_request_type.index') }}" icon="file-plus" />
+                <x-nav-menu-item title="Purchase Order Type"
+                    href="{{ route('admin.administrator.master_data.purchase_order_type.index') }}" icon="shopping-bag" />
+                <x-nav-menu-item title="Administration Text"
+                    href="{{ route('admin.administrator.administration_texts.index') }}" icon="file" />
+                <x-nav-menu-item title="Default Documents"
+                    href="{{ route('admin.administrator.master_data.default_documents.index') }}" icon="folder" />
+            </x-nav-menu-item>
 
+            <x-nav-menu-item title="User Management" icon="users" parent="Administrasi">
+                <x-nav-menu-item title="User" href="{{ route('admin.administrator.users.index') }}" icon="user" />
+                <x-nav-menu-item title="Role" href="{{ route('admin.administrator.user_management.roles.index') }}"
+                    icon="unlock" />
+                <x-nav-menu-item title="Guest" href="{{ route('admin.guest.index') }}" icon="user-plus" />
+                <x-nav-menu-item title="Karyawan" href="{{ route('admin.administrator.user_management.employees.index') }}"
+                    icon="briefcase" />
+            </x-nav-menu-item>
 
-         <!-- Nav item -->
-         <li class="nav-item">
-            <div class="navbar-heading">Layouts & Pages</div>
-        </li>
+            <x-nav-menu-item title="Vendor Management" icon="bar-chart" parent="Administrasi">
+                <x-nav-menu-item title="Vendor List" href="{{ route('admin.vendor.index') }}" icon="list" />
+                <x-nav-menu-item title="VPI" href="{{ route('admin.vendor_performance.index') }}" icon="bar-chart-2" />
+                <x-nav-menu-item title="VSI" href="#" icon="file" />
+            </x-nav-menu-item>
+        </x-nav-menu-item>
+        <x-nav-menu-item title="PR Management" icon="layers">
+            <x-nav-menu-item title="PR Non Proyek" href="{{ route('admin.purchase_request_header.index') }}"
+                icon="file-text" />
+            <x-nav-menu-item title="PR Proyek" href="{{ route('admin.purchase_request.index') }}" icon="list" />
+        </x-nav-menu-item>
 
+        <x-nav-menu-item title="Procurement Planning" icon="calendar">
+            <x-nav-menu-item title="Pola Belanja" href="{{ route('admin.pola_belanja.index') }}" icon="list" />
+            <x-nav-menu-item title="Paket Pekerjaan" href="{{ route('admin.purchase_plan.index') }}" icon="layers" />
+        </x-nav-menu-item>
 
-             <!-- Nav item -->
-             <li class="nav-item">
-                <a class="nav-link has-arrow @@if (context.page_group !== 'pages') { collapsed }" href="#!" data-bs-toggle="collapse" data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
-                    <i
-                    data-feather="layers"
-
-                    class="nav-icon icon-xs me-2">
-                </i> Pages
-                </a>
-
-                <div id="navPages" class="collapse @@if (context.page_group === 'pages') { show }" data-bs-parent="#sideNavbar">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link @@if (context.page === 'profile') { active }" href="@@webRoot/pages/profile.html">
-                                Profile
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow  @@if (context.page === 'settings') { active } "  href="@@webRoot/pages/settings.html" >
-                                Settings
-                                </a>
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link @@if (context.page === 'billing') { active }" href="@@webRoot/pages/billing.html">
-                                Billing
-                </a>
-                        </li>
-
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link @@if (context.page === 'pricing') { active }" href="@@webRoot/pages/pricing.html">
-                               Pricing
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @@if (context.page === '404error') { active }" href="@@webRoot/pages/404-error.html">
-                                404 Error
-                </a>
-                        </li>
-                    </ul>
-                </div>
-
-                </li>
-
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow @@if (context.page_group !== 'authentication') { collapsed }" href="#!" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
-                                <i data-feather="lock" class="nav-icon icon-xs me-2">
-                                </i> Authentication
-                            </a>
-                            <div id="navAuthentication" class="collapse @@if (context.page_group === 'authentication') { show }" data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link @@if (context.page === 'signin') { active }" href="@@webRoot/pages/sign-in.html"> Sign In</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link @@if (context.page === 'signup') { active } " href="@@webRoot/pages/sign-up.html"> Sign Up</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link @@if (context.page === 'forgetpassword') { active }" href="@@webRoot/pages/forget-password.html">
-                                             Forget Password
-                                </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @@if (context.page === 'layouts') { active }" href="@@webRoot/pages/layout.html">
-                                <i
-                                    data-feather="sidebar"
-
-                                    class="nav-icon icon-xs me-2"
-                                >
-                                </i
-                                      >
-                                Layouts
-                            </a>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <div class="navbar-heading">UI Components</div>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow @@if (context.page === 'docs') { active }" href="@@webRoot/docs/accordions.html" >
-                                <i data-feather="package" class="nav-icon icon-xs me-2" >
-                            </i>  Components
-                            </a>
-                         </li>
-                  
-
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow @@if (context.page_group !== 'menulevel') { collapsed }" href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevel" aria-expanded="false" aria-controls="navMenuLevel">
-                                <i
-                                data-feather="corner-left-down"
-
-                                class="nav-icon icon-xs me-2"
-                            >
-                            </i
-                                      > Menu Level
-                            </a>
-                            <div id="navMenuLevel" class="collapse @@if (context.page_group === 'menulevel') { show }" data-bs-parent="#sideNavbar">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link has-arrow @@if (context.page === 'twolevel') { active }" href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelSecond" aria-expanded="false" aria-controls="navMenuLevelSecond">
-                                    Two Level
-                                </a>
-                                        <div id="navMenuLevelSecond" class="collapse" data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link @@if (context.page === 'navitem1') { active }" href="#!">  NavItem 1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link @@if (context.page === 'navitem2') { active }" href="#!">  NavItem 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link has-arrow @@if (context.page_group !== 'threelevel') { collapsed } " href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThree" aria-expanded="false" aria-controls="navMenuLevelThree">
-                                    Three Level
-                                </a>
-                                        <div id="navMenuLevelThree" class="collapse @@if (context.page_group === 'threelevel') { show }" data-bs-parent="#navMenuLevel">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link @@if (context.page_group !== 'navitemthree1') { collapsed }" href="#!" data-bs-toggle="collapse" data-bs-target="#navMenuLevelThreeOne" aria-expanded="false" aria-controls="navMenuLevelThreeOne">
-                                                         NavItem 1
-                                            </a>
-                                                    <div id="navMenuLevelThreeOne" class="collapse collapse @@if (context.page_group === 'navitemthree1') { show }" data-bs-parent="#navMenuLevelThree">
-                                                        <ul class="nav flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link @@if (context.page === 'navchilitem') { active }" href="#!">
-                                                                     NavChild Item 1
-                                                        </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link @@if (context.page === 'navitem2') { active }" href="#!">  Nav Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                                         <!-- Nav item -->
-                        <li class="nav-item">
-                            <div class="navbar-heading">Documentation</div>
-                        </li>
-
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                            <a class="nav-link has-arrow @@if (context.page === 'docs') { active }" href="@@webRoot/docs/index.html" >
-                                <i data-feather="clipboard" class="nav-icon icon-xs me-2" >
-                            </i>  Docs
-                            </a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link has-arrow @@if (context.page === 'docs') { active }" href="@@webRoot/docs/changelog.html" >
-                                <i data-feather="git-pull-request" class="nav-icon icon-xs me-2" >
-                            </i>  Changelog
-                            </a>
-                         </li>
-
-
-
-
-                    </ul>
-
-                </div>
-</nav>
+        <x-nav-menu-item title="Tender" icon="box">
+            <x-nav-menu-item title="Tender List" href="{{ route('admin.tender.index') }}" icon="list" />
+            <x-nav-menu-item title="Reverse Auction" href="{{ route('admin.reverse_auction.index') }}"
+                icon="file-text" />
+        </x-nav-menu-item>
+        <x-nav-menu-item title="Purchase Order" href="{{ route('admin.purchase_order.index') }}" icon="file-plus" />
+        <x-nav-menu-item title="Setting" icon="settings">
+            <x-nav-menu-item title="App Setting" href="{{ route('admin.settings.index') }}" icon="bell" />
+            <x-nav-menu-item title="Task Schedule" href="{{ route('admin.settings.task_schedules.index') }}"
+                icon="bell" />
+            <x-nav-menu-item title="SSO" href="{{ route('admin.settings.sso.index') }}" icon="bell" />
+            <x-nav-menu-item title="Approval Blueprint" href="{{ route('admin.settings.approval_blueprints.index') }}"
+                icon="bell" />
+        </x-nav-menu-item>
+    @endslot
+</x-nav-container>

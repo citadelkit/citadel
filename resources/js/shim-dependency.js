@@ -1,4 +1,5 @@
 import './shim-jquery'
+
 import 'jquery-slimscroll/jquery.slimscroll.min.js';
 import 'jquery-loading-overlay';
 import 'prismjs/prism.js';
