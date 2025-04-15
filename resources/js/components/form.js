@@ -1,7 +1,5 @@
 import Swal from "sweetalert2";
-import { serializeFormData, submitFormAction } from "../helpers/form_submit";
-import { getPlugins } from "../helpers/plugins";
-import { Toast } from "bootstrap";
+import { serializeFormData } from "../helpers/form_submit";
 
 export default function CitadelForm(el) {
     $(el).on('submit', function (e) {

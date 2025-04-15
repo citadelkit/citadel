@@ -11,6 +11,4 @@ import '@support/dash-ui/src/assets/js/main.js';
 import '@support/dash-ui/src/assets/js/feather.js';
 import '@support/dash-ui/src/assets/js/sidebarMenu.js';
 
-// Jquery Library
-import "select2";
-import "select2/dist/css/select2.min.css"; // Import CSS Select2
+import 'autonumeric'

@@ -28,7 +28,7 @@ import CitadelForm, { CitadelFormWatchEvent } from "./form";
             })
         }
     }
-    console.log($, 'INSTANCE')
+
     $.fn.CButton = through(CitadelButton)
     $.fn.CForm = through(CitadelForm)
     $.fn.CChart = through(CitadelChart)
@@ -40,8 +40,7 @@ import CitadelForm, { CitadelFormWatchEvent } from "./form";
     $.fn.CWizard = through(CitadelWizard)
     $.fn.CDatepicker = through(CitadelDatepicker)
     $.fn.CWidget = through(CitadelWidget)
+    // $.fn.CInput = through(CitadelInput)
 
     watchEvent()
-
-    console.log("COMPONENT READY", $.fn.CTable)
 })(window, document, jQuery)
