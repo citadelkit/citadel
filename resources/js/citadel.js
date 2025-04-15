@@ -1,5 +1,5 @@
 import './components';
-import { startObserver } from "./helpers";
+import { startObserver, initGlobalFunction } from "./helpers";
 import { getPlugins } from "./helpers/plugins";
 
 (function (window, document, $) {
@@ -10,6 +10,7 @@ import { getPlugins } from "./helpers/plugins";
         // $('.modal.popup').CModal()
 
         startObserver()
+        initGlobalFunction()
         $('.citadel-button').CButton()
         $('.citadel-chart').CChart()
         $('.citadel-form').CForm()

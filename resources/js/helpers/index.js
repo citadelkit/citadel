@@ -155,14 +155,58 @@ function startObserver() {
 
 function addQueryParams(url, newParams) {
     let urlObj = new URL(url, window.location.origin); // Ensures proper parsing
-    $.each(newParams, function(key, value) {
+    $.each(newParams, function (key, value) {
         urlObj.searchParams.set(key, value); // Adds or updates query parameters
     });
     return urlObj.toString();
 }
 
 function citadelFetchComponentLifeCycle(c, f = 'reactive') {
-    return addQueryParams(location.href, {f, c})
+    return addQueryParams(location.href, { f, c })
 }
 
-export { fetchPage, isEmpty, getFormData, Action, startObserver, addQueryParams, citadelFetchComponentLifeCycle }
+function initGlobalFunction() {
+    window.number_format = (number, decimals, dec_point, thousands_sep) => {
+        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function(n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+
+        return s.join(dec);
+    }
+
+    window.formatCurrency = (value) => {
+        return number_format(value, 0, ',', '.'); // Adjusted to use three decimal places
+    }
+
+    window.formatVolume = (value) => {
+        return number_format(value, 3, ',', '.'); // Adjusted to use three decimal places
+    }
+
+}
+
+export {
+    fetchPage,
+    isEmpty,
+    getFormData,
+    Action,
+    startObserver,
+    addQueryParams,
+    citadelFetchComponentLifeCycle,
+    initGlobalFunction
+}

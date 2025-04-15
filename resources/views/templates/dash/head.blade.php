@@ -3,6 +3,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<base href="{{ url('/') }}" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/x-icon" href="@@webRoot/assets/images/favicon/favicon.ico">
