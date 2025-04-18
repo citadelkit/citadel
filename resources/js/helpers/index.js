@@ -271,10 +271,25 @@ function initGlobalFunction($) {
 
 }
 
+function bootstrapHelperOnce() {
+    if(window.bootstrapHelperOnceCalled == true) return
+    document.addEventListener('click', function (e) {
+        const toggleBtn = e.target.closest('[data-bs-toggle="dropdown"]');
+        if (toggleBtn) {
+            const dd = bootstrap.Dropdown.getOrCreateInstance(toggleBtn);
+            dd.toggle();
+        }
+    });
+    window.bootstrapHelperOnceCalled = true
+}
+
+
 function initBootstrapComponents() {
+    bootstrapHelperOnce()
     // Dropdowns
-    document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(el => {
-        new bootstrap.Dropdown(el);
+    $('[data-bs-toggle="dropdown"]').each(function () {
+        bootstrap.Dropdown.getInstance(this)?.dispose()
+        bootstrap.Dropdown.getOrCreateInstance(this);
     });
 
     // Tooltips

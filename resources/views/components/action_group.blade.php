@@ -1,13 +1,12 @@
 @if ($dropdown)
     <div id="{{ $name }}" class="btn-group" role="group">
-        <button id="btnGroupDrop{{ $name }}" type="button" class="btn btn-primary dropdown-toggle"
-            data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             @if (!$no_label)
                 <i class="{{ $icon }}"></i>
                 <label for="">{{ $title }}</label>
             @endif
         </button>
-        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop{{ $name }}">
+        <ul class="dropdown-menu">
             {!! $html !!}
         </ul>
     </div>
