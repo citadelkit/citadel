@@ -7,11 +7,10 @@ datepickerFactory($)
 $.fn.select2 = select2
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-
 window.bootstrap = bootstrap
-
-
 
 window.$ = $;
 window.jQuery = $;
 window.jquery = $;
+
+export { $ }

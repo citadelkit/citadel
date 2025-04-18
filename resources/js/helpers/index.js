@@ -1,3 +1,5 @@
+import CitadelTable from "../components/table";
+
 /**
  * Fetch Page from Citadel Server
  *
@@ -100,10 +102,10 @@ function Action(target) {
             url: requestUrl,
             type: 'GET',
             beforeSend: function () {
-                $(targetElement).LoadingOverlay("show");
+                $(targetElement).loadingOverlay();
             },
             complete: function () {
-                $(targetElement).LoadingOverlay("hide");
+                $(targetElement).loadingOverlay("remove");
             },
             success: function (result) {
                 if (targetElement) {
@@ -165,7 +167,8 @@ function citadelFetchComponentLifeCycle(c, f = 'reactive') {
     return addQueryParams(location.href, { f, c })
 }
 
-function initGlobalFunction() {
+function initGlobalFunction($) {
+    console.log("INIT GLOBAL FUNCTION", $)
     window.number_format = (number, decimals, dec_point, thousands_sep) => {
         number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
         var n = !isFinite(+number) ? 0 : +number,
@@ -196,6 +199,74 @@ function initGlobalFunction() {
 
     window.formatVolume = (value) => {
         return number_format(value, 3, ',', '.'); // Adjusted to use three decimal places
+    }
+
+    
+    window.isPromise = (p) => {
+        return p && Object.prototype.toString.call(p) === "[object Promise]";
+    }
+
+    
+    window.showModal = async (event) => {
+        const $el = $(event.target);
+        const modal_target = $el.data('modal-target');
+        const $modal = $(modal_target);
+        const before_show = $modal.data('before-show');
+        const modal_param = $el.data('modal-param');
+        console.log(before_show);
+
+
+        if (before_show) {
+            let res;
+            if (modal_param === '' || modal_param === undefined || modal_param === null) {
+                res = window[before_show]();
+            } else {
+                res = ajaxItem(modal_param);
+
+            }
+
+            if (isPromise(res)) {        
+                console.log("IS PROMISE: ",$, window.$)
+                $('body').loadingOverlay();
+                await res;
+            }
+
+            if (!res) {
+                $('body').loadingOverlay("remove");
+                return;
+            }
+        }
+
+        $modal.appendTo("body").modal('show');
+        $('body').loadingOverlay("remove");
+    }
+
+    
+    window.ModalTable = async (table, url) => {
+        //
+        let $table = $(table)
+
+        const table_id = $table.attr('id')
+        const id = $table.attr('id')
+        let afterEffect = $table.attr('afterEffect') || ''
+        return await $.get(url + "?get_config=1").done(data => {
+            let {
+                filters,
+                tableConfig
+            } = data;
+            $table.attr('config', {
+                method: "get",
+                config : {
+                    refresh: url,
+                }
+            })
+            CitadelTable($table)
+            
+            return true;
+        }).fail(function() {
+            return false;
+        });
+
     }
 
 }

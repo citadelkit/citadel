@@ -10,7 +10,7 @@ import { getPlugins } from "./helpers/plugins";
         // $('.modal.popup').CModal()
 
         startObserver()
-        initGlobalFunction()
+        initGlobalFunction(window.$)
         $('.citadel-button').CButton()
         $('.citadel-chart').CChart()
         $('.citadel-form').CForm()

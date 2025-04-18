@@ -1,4 +1,4 @@
-import './shim-jquery'
+import { $ } from './shim-jquery'
 
 import 'jquery-slimscroll/jquery.slimscroll.min.js';
 import 'jquery-loading-overlay';
@@ -12,3 +12,7 @@ import '@support/dash-ui/src/assets/js/feather.js';
 import '@support/dash-ui/src/assets/js/sidebarMenu.js';
 
 import 'autonumeric';
+
+window.$ = $;
+window.jQuery = $;
+window.jquery = $;
