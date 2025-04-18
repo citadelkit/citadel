@@ -9,7 +9,8 @@ use Citadel\Core\Traits\HasColspan;
 use Citadel\Core\Traits\HasData;
 use Citadel\Core\Traits\Makeable;
 
-class Component implements Backbone, Reactive {
+class Component implements Backbone, Reactive
+{
     use CommonCitadelElement, HasData, Makeable, HasColspan;
     protected $lifecycle, $parent;
     protected $pass_data = [];
@@ -52,7 +53,7 @@ class Component implements Backbone, Reactive {
 
     public function renderReactive($component_name)
     {
-        if($component_name == $this->name) return $this;
+        if ($component_name == $this->name) return $this;
         return null;
     }
 
@@ -66,10 +67,7 @@ class Component implements Backbone, Reactive {
         return view('citadel-template::core.component', $this->data());
     }
 
-    public function parser()
-    {
-
-    }
+    public function parser() {}
 
     final public function __toString()
     {

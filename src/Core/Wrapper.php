@@ -87,7 +87,7 @@ class Wrapper implements Reactive
         ];
     }
 
-    public function renderSchema($as_html = true)
+    public function renderSchema($as_html = true, ?callable $handler = null)
     {
         // loop through schema
         // render backbone
@@ -100,6 +100,10 @@ class Wrapper implements Reactive
             $this->schema = $this->callCallable($this->schema, ...$this->pass_data);
         }
 
+        if(is_callable($handler)) {
+            $this->schema = $this->callCallable($this->schema, ...$this->pass_data);
+        }
+
         foreach ($this->schema as $s) {
             if (!($s instanceof Backbone)) {
                 throw new Error('BACKBONE[001]: Schema component must be a Backbone class, ' . gettype($s) . ' given.');
@@ -108,6 +112,10 @@ class Wrapper implements Reactive
             $s->setLifecycle('backbone');
             $s->passData($this->pass_data);
             $show = $s->isShown($this->pass_data);
+
+            if($this->getName() == "citadel:table_action") {
+                $s->setName($s->getName() . "-" .$this->pass_data['key']);
+            }
 
             if ($show) {
                 $backbone = $s->backbone();

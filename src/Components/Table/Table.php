@@ -228,9 +228,9 @@ class Table extends Wrapper
             array_unshift(
                 $this->schema,
                 Column::make('action', __("Action"))
-                    ->value(fn($model) => ActionGroup::make('action')
+                    ->value(fn(&$model, &$key) => ActionGroup::make('citadel:table_action')
                         ->style("min-width: 100px;")
-                        ->passData($model)
+                        ->passData(['model' => $model, "key" => $key])
                         ->schema($this->actions))
             );
         }
@@ -326,12 +326,13 @@ class Table extends Wrapper
 
     protected function postFetch($data, $schema)
     {
-        $data = $data->map(function ($model) use ($schema) {
+        $data = $data->map(function ($model, $key) use ($schema) {
             $new = $model->toArray();
             foreach ($schema as $column) {
-                $value = $model->{$column->getName()} ?? null;
-                $column->passData($this->pass_data);
-                $newValue = $column->applyValue(compact('value', 'model'));
+                $value = $model[$column->getName()] ?? null;
+                $column->passData([...$this->pass_data]);
+                
+                $newValue = $column->applyValue(compact('value', 'model', 'key'));
                 if ($newValue != null) {
                     $new[$column->getName()] = $newValue;
                 }

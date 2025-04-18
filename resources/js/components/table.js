@@ -1,7 +1,7 @@
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-responsive-bs5';
-import { addQueryParams } from '../helpers';
+import { addQueryParams, initBootstrapComponents } from '../helpers';
 import { serializeFormData } from '../helpers/form_submit';
 
 const basic = {
@@ -113,6 +113,10 @@ function init($table) {
             },
         })
     )
+
+    dt.on('draw', function() {
+        initBootstrapComponents()
+    })
 
     if (c.numbering) {
         numbering(dt)

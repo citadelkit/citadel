@@ -14,6 +14,12 @@ trait CommonCitadelElement {
     {
         $this->config = config('citadel-config');
     }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
 
     public function show($show = true)
     {

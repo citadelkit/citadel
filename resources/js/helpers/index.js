@@ -176,7 +176,7 @@ function initGlobalFunction($) {
             sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
             dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
             s = '',
-            toFixedFix = function(n, prec) {
+            toFixedFix = function (n, prec) {
                 var k = Math.pow(10, prec);
                 return '' + Math.round(n * k) / k;
             };
@@ -201,12 +201,12 @@ function initGlobalFunction($) {
         return number_format(value, 3, ',', '.'); // Adjusted to use three decimal places
     }
 
-    
+
     window.isPromise = (p) => {
         return p && Object.prototype.toString.call(p) === "[object Promise]";
     }
 
-    
+
     window.showModal = async (event) => {
         const $el = $(event.target);
         const modal_target = $el.data('modal-target');
@@ -225,8 +225,8 @@ function initGlobalFunction($) {
 
             }
 
-            if (isPromise(res)) {        
-                console.log("IS PROMISE: ",$, window.$)
+            if (isPromise(res)) {
+                console.log("IS PROMISE: ", $, window.$)
                 $('body').loadingOverlay();
                 await res;
             }
@@ -241,7 +241,7 @@ function initGlobalFunction($) {
         $('body').loadingOverlay("remove");
     }
 
-    
+
     window.ModalTable = async (table, url) => {
         //
         let $table = $(table)
@@ -256,19 +256,46 @@ function initGlobalFunction($) {
             } = data;
             $table.attr('config', {
                 method: "get",
-                config : {
+                config: {
                     refresh: url,
                 }
             })
             CitadelTable($table)
-            
+
             return true;
-        }).fail(function() {
+        }).fail(function () {
             return false;
         });
 
     }
 
+}
+
+function initBootstrapComponents() {
+    // Dropdowns
+    document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(el => {
+        new bootstrap.Dropdown(el);
+    });
+
+    // Tooltips
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+        new bootstrap.Tooltip(el);
+    });
+
+    // Popovers
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+        new bootstrap.Popover(el);
+    });
+
+    // Tabs (opsional kalau kamu inject tabs)
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(el => {
+        new bootstrap.Tab(el);
+    });
+
+    // Collapse
+    document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
+        new bootstrap.Collapse(el, { toggle: false });
+    });
 }
 
 export {
@@ -279,5 +306,6 @@ export {
     startObserver,
     addQueryParams,
     citadelFetchComponentLifeCycle,
-    initGlobalFunction
+    initGlobalFunction,
+    initBootstrapComponents
 }
