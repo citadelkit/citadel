@@ -283,6 +283,40 @@ function bootstrapHelperOnce() {
     window.bootstrapHelperOnceCalled = true
 }
 
+function initSummerNote($) {
+    $('.summer').summernote({
+        height: '200px',
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['undo'],
+            ['redo']
+        ],
+        shortcuts: true,
+        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0',
+            '3.0'
+        ],
+        popover: {
+            table: [
+                ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+            ],
+            air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+            ]
+        }
+    });
+}
+
 
 function initBootstrapComponents() {
     bootstrapHelperOnce()
@@ -322,5 +356,6 @@ export {
     addQueryParams,
     citadelFetchComponentLifeCycle,
     initGlobalFunction,
-    initBootstrapComponents
+    initBootstrapComponents,
+    initSummerNote
 }

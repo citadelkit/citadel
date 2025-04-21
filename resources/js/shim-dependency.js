@@ -12,6 +12,7 @@ import '@support/dash-ui/src/assets/js/feather.js';
 import '@support/dash-ui/src/assets/js/sidebarMenu.js';
 
 import 'autonumeric';
+import 'summernote';
 
 window.$ = $;
 window.jQuery = $;

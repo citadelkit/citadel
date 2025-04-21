@@ -1,5 +1,5 @@
 import './components';
-import { startObserver, initGlobalFunction } from "./helpers";
+import { startObserver, initGlobalFunction, initSummerNote } from "./helpers";
 import { getPlugins } from "./helpers/plugins";
 
 (function (window, document, $) {
@@ -11,6 +11,7 @@ import { getPlugins } from "./helpers/plugins";
 
         startObserver()
         initGlobalFunction(window.$)
+        initSummerNote(window.$)
         $('.citadel-button').CButton()
         $('.citadel-chart').CChart()
         $('.citadel-form').CForm()
