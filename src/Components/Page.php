@@ -27,6 +27,7 @@ class Page extends Layout {
     public function renderBackbone()
     {   
         return view($this->view, $this->data())
+            ->with('page_title', $this->title)
             ->with('html', $this->renderSchema())
             ->with('sidebar', $this->getSidebar())
             ->with('header', $this->getHeader())

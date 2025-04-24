@@ -2,8 +2,7 @@
 
 namespace Citadel\Handler;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Notification;
+use Faker\Factory;
 
 class HeaderHandler
 {
@@ -16,22 +15,17 @@ class HeaderHandler
 
     public function user()
     {
-        $user = Auth::user();
+        $faker = Factory::create();
+
         return [
-            "name" => $user->name ?? $user->fullname,
-            "id" => $user->id,
-            "image" => $user->foto_url,
+            "name" => $faker->name,
+            "id" => $faker->numberBetween(0, 100),
+            "image" => "https://picsum.photos/200",
         ];
     }
     
     public function notifications()
     {
-        $notifications = Notification::where('user_id', Auth::user()->id)
-            ->selectRaw("title, body as message, redirect_to, id")
-            ->limit(5)
-            ->get()
-            ->toArray();
-        return $notifications;
         return [
             ['title' => 'Rishi Chopra', 'message' => 'Mauris blandit erat id nunc blandit...'],
             ['title' => 'Neha Kannned', 'message' => 'Proin at elit vel est...'],

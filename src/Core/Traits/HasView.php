@@ -2,7 +2,7 @@
 
 namespace Citadel\Core\Traits;
 
-use App\Services\LibraryView;
+use Citadel\View\Helpers\LibraryView;
 // use Illuminate\Support\Facades\View;
 use Illuminate\View\View;
 

@@ -17,13 +17,42 @@ class Button extends Component
     protected $icon;
     protected $target;
 
+    public $trigger;
+    public $trigger_args;
+
+
+    public function flyout($flyout_name, array $args = [])
+    {
+        $this->trigger = "flyout";
+        $this->target = $flyout_name;
+        $this->trigger_args = $args;
+        return $this;
+    }
+
+    public function modal($modal_name, array $args = [])
+    {
+        $this->trigger = "modal";
+        $this->target = $modal_name;
+        $this->trigger_args = $args;
+        return $this;
+    }
+
+    public function getTriggerArgs(...$args)
+    {
+        return collect($this->trigger_args)->map(function ($trigger_arg) use ($args) {
+            if (is_callable($trigger_arg)) return call_user_func_array($trigger_arg, $args);
+            return $trigger_arg;
+        });
+    }
+
     public function icon($icon)
     {
         $this->icon = $icon;
         return $this;
     }
 
-    public function onClick($event) {
+    public function onClick($event)
+    {
         $this->on_click = $event;
         return $this;
     }
@@ -34,12 +63,22 @@ class Button extends Component
         return $this;
     }
 
+    public function getTriggerType()
+    {
+        return match ($this->trigger) {
+            'flyout' => 'button-flyout',
+            'modal' => 'button-modal',
+            default => 'button'
+        };
+    }
+
     public function getClass()
     {
-        if($this->isDropdown()) {
-            return "text-$this->color citadel-button text-nowrap";
+        $trigger = $this->getTriggerType();
+        if ($this->isDropdown()) {
+            return "text-$this->color citadel-$trigger text-nowrap";
         }
-        return "btn btn-$this->color nav-$this->color citadel-button text-nowrap";
+        return "btn btn-$this->color nav-$this->color citadel-$trigger text-nowrap";
     }
 
     public function attr($attr)
@@ -50,15 +89,21 @@ class Button extends Component
 
     public function getAttr()
     {
-        return $this->attr;
+        return match ($this->trigger) {
+            'flyout' => "data-bs-backdrop=false data-bs-toggle=offcanvas " . $this->attr,
+            'modal' => "data-bs-backdrop=false data-bs-toggle=modal " . $this->attr,
+            default => $this->attr
+        };
     }
 
     public function getUrl()
     {
-        if(is_callable($this->url)) {
-            return $this->callCallable($this->url, ...$this->pass_data);
-        }
-        return $this->url;
+        return match ($this->trigger) {
+            'flyout' => "#".$this->target,
+            'modal' => "#".$this->target,
+            is_callable($this->url) => $this->callCallable($this->url, ...$this->pass_data),
+            default => $this->url
+        };
     }
 
     public function data()
@@ -80,15 +125,18 @@ class Button extends Component
                 ? $this->callCallable($this->disabled, ...$this->pass_data)
                 : $this->disabled,
             'on_click' => $this->getOnClick(),
-            'target' => $this->target
+            'target' => $this->target,
         ];
     }
 
     public function getOnClick()
     {
-        return is_callable($this->on_click)
+        if ($this->getTriggerType() == "button") {
+            return is_callable($this->on_click)
                 ? $this->callCallable($this->on_click, ...$this->pass_data)
                 : $this->on_click;
+        }
+        return $this->getTriggerArgs(...$this->pass_data);
     }
 
     public function isGroupItem()
@@ -98,7 +146,7 @@ class Button extends Component
 
     public function isDropdown()
     {
-        if($this->parent instanceof ActionGroup) {
+        if ($this->parent instanceof ActionGroup) {
             return $this->parent->isDropdown();
         }
         return false;

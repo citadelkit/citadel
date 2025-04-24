@@ -8,7 +8,7 @@ export default function CitadelFlyout(element) {
     }
     const def = JSON.stringify($el.attr('config'));
     const $body = $el.find('.offcanvas-body')
-    const obj = new Offcanvas(element);
+    // const obj = new Offcanvas(element);
 
     if (def?.source == "page") {
         $el.on('show.bs.offcanvas', async function (el) {
@@ -19,7 +19,7 @@ export default function CitadelFlyout(element) {
             $body.append(page)
         })
     }
-    return obj
+    // return obj
 }
 
 
@@ -27,7 +27,7 @@ function old(element) {
     const $el = $(element);
     const def = $el.data('flyout');
     const $body = $el.find('.offcanvas-body')
-    const obj = new Offcanvas(element);
+    // const obj = new Offcanvas(element);
 
     if (def?.source == "page") {
         $el.on('show.bs.offcanvas', async function (el) {
@@ -38,6 +38,6 @@ function old(element) {
             $body.append(page)
         })
     }
-    return obj
+    // return obj
 
 }

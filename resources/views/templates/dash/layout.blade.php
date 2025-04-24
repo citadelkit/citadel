@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Layout | Dash Ui - Bootstrap 5 Admin Dashboard Template</title>
+    <title>{{ $page_title }}</title>
     @include('citadel-template::dash.head')
 </head>
 

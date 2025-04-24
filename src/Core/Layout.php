@@ -2,15 +2,11 @@
 
 namespace Citadel\Core;
 
-use App\Models\Menu;
-use App\Models\User;
-use App\Models\UserPosition;
 use Citadel\Core\Contracts\Backbone;
 use Citadel\Core\Traits\HasColumns;
 use Citadel\Core\Traits\HasData;
 use Citadel\Core\Traits\HasSchema;
 use Citadel\Core\Traits\Makeable;
-use App\Settings\GeneralSettings;
 use Citadel\Core\Contracts\Reactive;
 use Citadel\Core\Traits\CommonCitadelElement;
 use Closure;
@@ -81,7 +77,7 @@ class Layout {
         $business = $this->getBusinessData();
         foreach ($this->schema as $s) {
             if(!($s instanceof Backbone)) {
-                throw new Error('BACKBONE[001]: Schema component must be a Backbone class, '. gettype($s). ' given.');
+                throw new Error('BACKBONE[001]: Schema component must be a Backbone class, '. gettype($s). ' given.' . json_encode($s));
             }
             $s->setParent($this);
             $s->setLifecycle('backbone');

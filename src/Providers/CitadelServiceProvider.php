@@ -29,7 +29,7 @@ class CitadelServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../dist' => public_path('citadelkit'),
-        ], 'citadel');
+        ], 'citadel');  
         
         $this->publishes([
             __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),

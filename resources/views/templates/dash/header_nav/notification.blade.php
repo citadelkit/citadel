@@ -1,5 +1,5 @@
 <li class="dropdown stopevent">
-    <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary text-muted" href="#" role="button"
+    <a class="btn btn-info btn-icon rounded-circle indicator indicator-primary" href="#" role="button"
         id="dropdownNotification" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="icon-xs" data-feather="bell"></i>
     </a>
@@ -18,7 +18,7 @@
                     <li class="list-group-item {{ $loop->first ? 'bg-light' : '' }}">
                         <a href="#" class="text-muted">
                             <h5 class="mb-1">{{ $notification['title'] }}</h5>
-                            <p class="mb-1">{!! $notification['message'] !!}</p>
+                            <p class="mb-1 text-dark-secondary">{!! $notification['message'] !!}</p>
                         </a>
                     </li>
                 @endforeach

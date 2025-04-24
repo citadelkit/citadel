@@ -2,9 +2,7 @@
 
 namespace Citadel\Components;
 
-use App\Services\Citadel\Utility\Gradient;
 use Citadel\Core\Component;
-use Closure;
 use Illuminate\View\View;
 
 class Widget extends Component {

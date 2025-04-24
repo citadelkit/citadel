@@ -2,8 +2,6 @@
 
 namespace Citadel\Core;
 
-use App\Services\LibraryView;
-use Citadel\Components\Layout\Card;
 use Citadel\Core\Contracts\Backbone;
 use Citadel\Core\Contracts\Reactive;
 use Citadel\Core\Traits\CommonCitadelElement;

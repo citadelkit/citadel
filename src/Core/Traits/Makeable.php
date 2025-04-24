@@ -2,7 +2,7 @@
 
 namespace Citadel\Core\Traits;
 
-use App\Services\Citadel\Citadel;
+use Citadel\Citadel;
 use Illuminate\Support\Str;
 
 trait Makeable {

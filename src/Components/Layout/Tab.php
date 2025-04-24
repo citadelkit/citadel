@@ -2,8 +2,6 @@
 
 namespace Citadel\Components\Layout;
 
-use App\Services\LibraryView;
-use Citadel\Core\Component;
 use Citadel\Core\Traits\HasDisabled;
 use Citadel\Core\Traits\HasView;
 use Citadel\Core\Wrapper;

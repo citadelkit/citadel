@@ -4,7 +4,6 @@ namespace Citadel\Components\Layout;
 
 use Citadel\Core\Wrapper;
 use Illuminate\View\View;
-use App\Services\LibraryView;
 
 class CustomView extends Wrapper
 {

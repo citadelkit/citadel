@@ -2,10 +2,7 @@
 
 namespace Citadel\Components;
 
-use App\Services\Citadel\Traits\UseURL;
-use Citadel\Core\Component;
 use Citadel\Core\Contracts\CitadelEnum;
-use Citadel\Core\Contracts\HasLabel;
 use Citadel\Core\Traits\HasColor;
 
 class Badge extends Text

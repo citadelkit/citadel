@@ -1,7 +1,7 @@
 import { handleComponent } from "../helpers/plugins";
 import CitadelSwal from "./swal";
 
-export default function CitadelButton(element) {
+export default function CitadelButton(element, type) {
     const $el = element;
 
     let def = JSON.parse($el.attr('data-ct-onclick') || null);
@@ -32,6 +32,10 @@ export default function CitadelButton(element) {
     })
 
     return $el
+}
+
+function flyout() {
+
 }
 
 
