@@ -3,6 +3,7 @@
 namespace Citadel\Components;
 
 use Citadel\Core\Layout;
+use Citadel\Handler\SidebarHandler;
 
 class Page extends Layout {
     protected $view = "citadel-template::core";
@@ -24,6 +25,12 @@ class Page extends Layout {
         return $this;
     }
 
+    public function sidebar($sidebar_view)
+    {
+        $this->sidebar = $sidebar_view;
+        return $this;
+    }
+
     public function renderBackbone()
     {   
         return view($this->view, $this->data())
@@ -36,7 +43,15 @@ class Page extends Layout {
 
     public function getSidebar()
     {
-        return (new $this->sidebar)->data();
+        $s = (is_string($this->sidebar))
+            ? (new $this->sidebar)
+            : $this->sidebar;
+            
+        if($s instanceof SidebarHandler) {
+            return $s->data();
+        }
+
+        return $s;
     }
     
     public function getHeader()
