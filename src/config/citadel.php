@@ -10,7 +10,6 @@ return [
     ],
     'template' => [
         'js' => [
-            asset('citadelkit/citadel/citadel.js'),
             'resources/js/app.js',
             'resources/js/bootstrap.js',
         ]
