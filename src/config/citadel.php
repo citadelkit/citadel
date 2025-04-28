@@ -1,6 +1,10 @@
 <?php
 
 return [
+    // Citadel Developer control "build" or "development"
+    // "build" for end user (default)
+    // "development" for developer 
+    'mode' => 'build',
     'views' => [
         'page' => "citadel-template::core"
     ],
