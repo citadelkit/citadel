@@ -58,4 +58,10 @@ class Page extends Layout {
     {
         return (new $this->header)->data();
     }
+
+    public function alt1()
+    {
+        $this->view = 'citadel-template::core2';
+        return $this;
+    }
 }

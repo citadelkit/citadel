@@ -3,7 +3,7 @@
 namespace Citadel\Core\Traits;
 
 trait HasColumns {
-    protected $columns = 1;
+    protected $columns = 1; 
     protected $gap = 4;
     protected $flex = null;
 

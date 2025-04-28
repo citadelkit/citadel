@@ -18,22 +18,19 @@ class Citadel
         return Page::make($name);
     }
 
-    public function menu() {
+    public function menu() {}
 
-    }
+    public function SidebarMenuRender() {}
 
-    public function SidebarMenuRender()
+    public static function response($data, $status_code = 200)
     {
-    }
-
-    public static function response($data, $status_code = 200) {
         // if($data instanceof InteractiveComponent) {
         //     $data = $data->compile(false);
         // }
         return response()->json([
-            'status_code' => $status_code,
-            'citadel' => $data
-        ], $status_code);
+                'status_code' => $status_code,
+                'citadel' => $data
+            ], $status_code);
     }
 
 
@@ -46,11 +43,11 @@ class Citadel
     public static function moveFileUpload(string $directory_name, string $directory_target)
     {
         return collect(Storage::files("tmp/$directory_name"))
-        ->map(function($path) use ($directory_target) {
-            $new_path = $directory_target."/".basename($path);
-            Storage::move($path, "public/".$new_path);
-            return $new_path;
-        });
+            ->map(function ($path) use ($directory_target) {
+                $new_path = $directory_target . "/" . basename($path);
+                Storage::move($path, "public/" . $new_path);
+                return $new_path;
+            });
     }
 
     public static function getIndex()
@@ -66,6 +63,6 @@ class Citadel
     public static function endTimer()
     {
         $end_time = microtime(true);
-        return $end_time - static::$start_time."s";
+        return $end_time - static::$start_time . "s";
     }
 }

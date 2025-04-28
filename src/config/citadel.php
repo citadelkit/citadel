@@ -13,5 +13,4 @@ return [
     ],
     'sidebar' => \Citadel\Handler\SidebarHandler::class,
     'header' => \Citadel\Handler\HeaderHandler::class
-
 ];

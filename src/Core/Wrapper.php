@@ -18,7 +18,7 @@ class Wrapper implements Reactive
     use CommonCitadelElement, HasSchema, HasData, Makeable, HasColumns, HasColspan, HasView;
     protected $lifecycle, $parent;
     protected $pass_data;
-    protected $align = "start";
+    protected $align = "normal";
     protected $width = null;
     protected $style = "";
 
