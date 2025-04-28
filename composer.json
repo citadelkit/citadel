@@ -3,7 +3,7 @@
     "description": "Citadel is laravel fullstack wrapper. Inspired by Laravel Filament",
     "type": "library",
     "require": {
-        "laravel/framework": "^10.48.22",
+        "laravel/framework": "10|11|12",
         "laravel/tinker": "^2.8",
         "fakerphp/faker": "^1.24"
     },
