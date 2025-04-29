@@ -55,7 +55,9 @@ const response = {
     validation(json) {
         Swal.fire({
             title: "Validation Error",
-            html: json.message
+            html: json.message,
+            icon: "error",
+            confirmButtonText: "Close"
         })
         Object.keys(json.errors).forEach(key => {
             json.errors[key].forEach(m => {
@@ -86,6 +88,7 @@ const response = {
     init_citadel_object(citadel_response) {
         if (citadel_response.sweet_alert) {
             const sw = citadel_response.sweet_alert
+            console.log(sw.config)
             Swal.fire(sw.config)
                 .then(r => {
                     console.log(r)
@@ -100,6 +103,8 @@ const response = {
         if (after_confirm == "none") return
         if (after_confirm == "reload") {
             window.location.reload()
+        }else{
+            window.location.href = after_confirm
         }
     }
 }
