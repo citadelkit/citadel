@@ -99,13 +99,16 @@ const response = {
                 })
         }
     },
-    handle_after_confirm({ after_confirm, after_confirm_args }) {
+    handle_after_confirm({ after_confirm, after_confirm_args,redirectUrl }) {
+        if(redirectUrl){
+            window.location.href = redirectUrl
+        }
         if (after_confirm == "none") return
         if (after_confirm == "reload") {
             window.location.reload()
-        }else{
-            window.location.href = after_confirm
         }
+        
+        
     }
 }
 

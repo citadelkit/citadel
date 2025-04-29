@@ -37,6 +37,8 @@ class SweetAlert extends Component implements JsonSerializable
     protected string $footer = '';
     protected string $content = '';
     protected string $type = 'info';
+    protected $url;
+
 
 
     protected string $after_confirm = 'none';
@@ -81,6 +83,7 @@ class SweetAlert extends Component implements JsonSerializable
             'name' => $this->name,
             'after_confirm' => $this->after_confirm,
             'after_confirm_args' => $this->after_confirm_args,
+            'redirectUrl' => $this->url,
             'config' => array_merge(
                 [
                     // 'type' => $this->icon !='help_outline' ? $this->icon : "info",
@@ -115,6 +118,19 @@ class SweetAlert extends Component implements JsonSerializable
             ),
         ];
     }
+
+    public function route($name, $parameters = [], $absolute = true)
+    {
+        $this->url = route($name, $parameters, $absolute);
+        return $this;
+    }
+
+    public function url($path = null, $parameters = [], $secure = null)
+    {
+        $this->url = url($path, $parameters, $secure);
+        return $this;
+    }
+
 
     public function buttons($buttons = [])
     {
