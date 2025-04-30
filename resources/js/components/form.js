@@ -66,7 +66,9 @@ const response = {
     validation(json) {
         Swal.fire({
             title: "Validation Error",
-            html: json.message
+            html: json.message,
+            icon: "error",
+            confirmButtonText: "Close"
         })
         Object.keys(json.errors).forEach(key => {
             json.errors[key].forEach(m => {
@@ -119,11 +121,16 @@ const response = {
                 })
         }
     },
-    handle_after_confirm({ after_confirm, after_confirm_args }) {
+    handle_after_confirm({ after_confirm, after_confirm_args,redirectUrl }) {
+        if(redirectUrl){
+            window.location.href = redirectUrl
+        }
         if (after_confirm == "none") return
         if (after_confirm == "reload") {
             window.location.reload()
         }
+        
+        
     }
 }
 

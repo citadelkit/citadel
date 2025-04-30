@@ -103,9 +103,9 @@ class Button extends Component
 
     public function getUrl()
     {
-        return match ($this->trigger) {
-            'flyout' => "#" . $this->target,
-            'modal' => "#" . $this->target,
+        return match (true) {
+            $this->trigger === 'flyout', 
+            $this->trigger === 'modal' => "#".$this->target,
             is_callable($this->url) => $this->callCallable($this->url, ...$this->pass_data),
             default => $this->url
         };

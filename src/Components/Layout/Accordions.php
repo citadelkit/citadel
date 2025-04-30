@@ -16,8 +16,8 @@ class Accordions extends Wrapper
         ->filter(fn($c) => $c->isShown($this->pass_data))
         ->map(function($item, $key) use (&$active) {
             if(gettype($active) == "integer") return $item;
-            $disabled = $item->getDisabled();
-            if(!$disabled && $active == null) {
+            // $disabled = $item->getDisabled();
+            if($active == true){
                 $item->active(true);
                 $active = $key;
             }

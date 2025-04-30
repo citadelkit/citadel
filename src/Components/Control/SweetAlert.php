@@ -36,6 +36,10 @@ class SweetAlert extends Component implements JsonSerializable
     protected string $customClass = '';
     protected string $footer = '';
     protected string $content = '';
+    protected string $type = 'info';
+    protected $url;
+
+
 
     protected string $after_confirm = 'none';
     protected $after_confirm_args = null;
@@ -79,10 +83,11 @@ class SweetAlert extends Component implements JsonSerializable
             'name' => $this->name,
             'after_confirm' => $this->after_confirm,
             'after_confirm_args' => $this->after_confirm_args,
+            'redirectUrl' => $this->url,
             'config' => array_merge(
                 [
-                    'type' => $this->icon !='help_outline' ? $this->icon : "info",
-                    'icon' => $this->icon !='help_outline' ? $this->icon : "info",
+                    // 'type' => $this->icon !='help_outline' ? $this->icon : "info",
+                    'icon' => $this->type, //"success", "error", "warning", "info" or "question"
                     'title' => $this->title,
                     'titleText' => $this->title,
                     'html' => $this->renderView($this->view),
@@ -108,11 +113,24 @@ class SweetAlert extends Component implements JsonSerializable
                     'customClass' => $this->customClass,
                     'footer' => $this->footer,
                 ],
-                $this->config,
-                $this->additional_data,
+                // $this->config,
+                // $this->additional_data,
             ),
         ];
     }
+
+    public function route($name, $parameters = [], $absolute = true)
+    {
+        $this->url = route($name, $parameters, $absolute);
+        return $this;
+    }
+
+    public function url($path = null, $parameters = [], $secure = null)
+    {
+        $this->url = url($path, $parameters, $secure);
+        return $this;
+    }
+
 
     public function buttons($buttons = [])
     {
@@ -165,6 +183,12 @@ class SweetAlert extends Component implements JsonSerializable
     public function confirmButtonColor($confirmButtonColor = '#3085d6')
     {
         $this->confirmButtonColor = $confirmButtonColor;
+        return $this;
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
         return $this;
     }
 
@@ -254,7 +278,7 @@ class SweetAlert extends Component implements JsonSerializable
     public function jsonSerialize(): mixed {
         return [
             'component' => 'sweetalert',
-            'args' => $this->getData()
+            'sweet_alert' => $this->getData()
         ];
     }
 }

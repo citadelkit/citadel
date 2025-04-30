@@ -2,15 +2,22 @@
 
 namespace Citadel\Components\Layout;
 
-use Citadel\Core\Traits\HasDisabled;
+// use Citadel\Core\Traits\HasDisabled;
 use Citadel\Core\Traits\HasView;
 use Citadel\Core\Wrapper;
 
 class Accordion extends Wrapper
 {
-    use HasView, HasDisabled;
+    use HasView;
 
     protected $active = false;
+    // protected $disable = false;
+
+    // public function disable($disable = true)
+    // {
+    //     $this->disable = $disable;
+    //     return $this;
+    // }
 
     public function active($active = true)
     {
@@ -29,6 +36,7 @@ class Accordion extends Wrapper
             'name' => $this->name,
             'title' => $this->title,
             'active' => $this->active,
+            // 'disable' => $this->disable,
             'style' => [
                 'columns' => $this->getColumnClass(),
                 'colspan' => $this->getColspanClass(),
@@ -45,14 +53,14 @@ class Accordion extends Wrapper
             'name' => $this->name,
             'title' => $this->title,
             'active' => $this->active,
-            'disabled' => $this->getDisabled()
+            // 'disabled' => $this->getDisabled()
         ]);
     }
 
     public function backbone()
     {
-        if($this->getDisabled()) return view("citadel-component::accordion", $this->data())
-            ->with('html', 'disabled');
+        // if($this->getDisabled()) return view("citadel-component::accordion", $this->data())
+        //     ->with('html', 'disabled');
         if($this->view) {
             if(is_callable($this->view)) {
                 $this->view($this->callCallable($this->view, ...$this->pass_data));
