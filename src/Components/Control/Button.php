@@ -20,6 +20,11 @@ class Button extends Component
     public $trigger;
     public $trigger_args;
 
+    public function __construct($name = "button", $title = null, $on_click = null)
+    {
+        $this->name = $name;
+        $this->title = $title ?? $name;
+    }
 
     public function flyout($flyout_name, array $args = [])
     {
@@ -99,8 +104,8 @@ class Button extends Component
     public function getUrl()
     {
         return match ($this->trigger) {
-            'flyout' => "#".$this->target,
-            'modal' => "#".$this->target,
+            'flyout' => "#" . $this->target,
+            'modal' => "#" . $this->target,
             is_callable($this->url) => $this->callCallable($this->url, ...$this->pass_data),
             default => $this->url
         };
@@ -160,10 +165,6 @@ class Button extends Component
 
     public function backbone()
     {
-        $result = view("citadel-component::button", $this->data());
-        // if($this->name == "propose_pola_belanja") {
-        //     dd($this->data(), $result->render());
-        // }
-        return $result;
+        return view("citadel-component::button", $this->data());
     }
 }

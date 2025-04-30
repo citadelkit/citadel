@@ -14,6 +14,7 @@ class Card extends Wrapper
         $this->no_header = $value;
         return $this;
     }
+    
     public function backbone()
     {
         if(is_callable($this->view)) {

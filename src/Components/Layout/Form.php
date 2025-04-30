@@ -12,9 +12,11 @@ class Form extends Wrapper
             'name' => $this->name,
             'title' => $this->title,
             'style' => [
+                'class' => $this->class,
                 'columns' => $this->getColumnClass(),
                 'colspan' => $this->getColspanClass(),
                 'align' => $this->getAlignClass(),
+                'custom' => $this->style,
             ]
         ];
     }

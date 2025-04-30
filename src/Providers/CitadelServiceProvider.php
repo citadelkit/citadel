@@ -2,6 +2,9 @@
 
 namespace Citadel\Providers;
 
+use Citadel\AuthRouteMethods;
+use Citadel\Components;
+use Citadel\Components\Control\Button;
 use Citadel\View\Components\HeaderNavContainer;
 use Citadel\View\Components\HeaderNavMenuItem;
 use Citadel\View\Components\HeaderNavNotification;
@@ -14,6 +17,7 @@ use Citadel\View\Components\NavMenuItem;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class CitadelServiceProvider extends ServiceProvider
@@ -28,6 +32,7 @@ class CitadelServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        // Route::mixin(new AuthRouteMethods);
         
         // $result = (new Vite)->useBuildDirectory('citadelkit')
         // ->withEntryPoints(['resources/css/index.js'])
@@ -51,7 +56,14 @@ class CitadelServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/components", 'citadel-component');
         $this->loadViewsFrom(__DIR__ . "/../../resources/views/templates", 'citadel-template');
         $this->mergeConfigFrom(__DIR__ . "/../config/citadel.php", 'citadel-config');
+        $this->registerComponent();
+    }
 
+    public function registerComponent()
+    {
+        Blade::componentNamespace('Citadel\\Components', 'citadel');
+        // Blade::componentNamespace('Citadel\\Components\\Control', 'citadel');
+        // dd(Blade::getClassComponentNamespaces());
         Blade::component('nav-container', NavContainer::class);
         Blade::component('nav-menu-item', NavMenuItem::class);
         Blade::component('nav-heading', NavHeading::class);
@@ -61,5 +73,16 @@ class CitadelServiceProvider extends ServiceProvider
         Blade::component('header-nav-user', HeaderNavUser::class);
         Blade::component('header-nav-notification', HeaderNavNotification::class);
         Blade::component('header-nav-menu-item', HeaderNavMenuItem::class);
+
+        Blade::directive('citadel', function($callback) {
+            class_alias(Button::class, 'Button');
+            $x = eval("return ".$callback.";");
+            $view = $x->resolveView();
+            $data = $x->data();
+            if ($view instanceof \Closure) {
+                $view = $view($data);
+            }
+            return View::make($view, $data + ['component' => $x])->render();
+        });
     }
 }

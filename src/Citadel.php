@@ -3,12 +3,16 @@
 namespace Citadel;
 
 use Citadel\Components\Page;
+use Citadel\Providers\AuthProvider;
+use Citadel\Providers\CitadelServiceProvider;
+use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\StorageAttributes;
+use RuntimeException;
 
-class Citadel
+class Citadel extends Facade
 {
     static protected $index = 0;
     static protected $start_time = 0;
@@ -64,5 +68,14 @@ class Citadel
     {
         $end_time = microtime(true);
         return $end_time - static::$start_time . "s";
+    }
+
+    public static function authRoutes($options = [])
+    {
+        if (! static::$app->providerIsLoaded(CitadelServiceProvider::class)) {
+            throw new RuntimeException('In order to use the Citadel::routes() method, please install the laravel/ui package first.');
+        }
+        
+        static::$app->make('router')->auth($options);
     }
 }

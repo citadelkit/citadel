@@ -1,4 +1,4 @@
-<div id="{{$name}}" class="card " style="{{$style['colspan']}}">
+<div id="{{$name}}" class="card {{$style['class']}}" style="{{$style['colspan']}}">
     @if(!$no_header)
     <div class="mx-4 mt-4 mb-2">
         <div class="h5 ">

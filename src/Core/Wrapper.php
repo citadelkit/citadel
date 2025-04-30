@@ -76,6 +76,7 @@ class Wrapper implements Reactive
             'name' => $this->name,
             'title' => $this->title,
             'style' => [
+                'class' => $this->class,
                 'columns' => $this->getColumnClass(),
                 'colspan' => $this->getColspanClass(),
                 'align' => $this->getAlignClass(),

@@ -15,6 +15,11 @@ class TextInput extends Component
         return $this;
     }
 
+    public function password()
+    {
+        return $this;
+    }
+
     public function value($value)
     {
         $this->value = $value;

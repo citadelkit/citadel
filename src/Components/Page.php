@@ -64,4 +64,11 @@ class Page extends Layout {
         $this->view = 'citadel-template::core2';
         return $this;
     }
+    
+
+    public function alt0()
+    {
+        $this->view = 'citadel-template::base';
+        return $this;
+    }
 }

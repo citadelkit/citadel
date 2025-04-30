@@ -17,6 +17,13 @@ class Layout {
     use CommonCitadelElement, HasSchema, HasData, Makeable, HasColumns;
 
     protected $business = null;
+    protected $style = "";
+
+    public function style($style) 
+    {
+        $this->style = $style;
+        return $this;
+    }
 
     public function data()
     {
@@ -24,7 +31,9 @@ class Layout {
             'name' => $this->name,
             'title' => $this->title,
             'style' => [
-                'columns' => $this->getColumnClass()
+                'columns' => $this->getColumnClass(),
+                'class' => $this->class,
+                'style' => $this->style,
             ]
         ];
     }

@@ -9,7 +9,10 @@ use Citadel\Core\Traits\HasColspan;
 use Citadel\Core\Traits\HasData;
 use Citadel\Core\Traits\Makeable;
 
-class Component implements Backbone, Reactive
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component as LaravelBladeComponent;
+
+class Component extends LaravelBladeComponent implements Backbone, Reactive
 {
     use CommonCitadelElement, HasData, Makeable, HasColspan;
     protected $lifecycle, $parent;
@@ -32,17 +35,6 @@ class Component implements Backbone, Reactive
     {
         $this->pass_data = $pass_data;
         return $this;
-    }
-
-    public function data()
-    {
-        return [
-            'name' => $this->name,
-            'title' => $this->title,
-            'style' => [
-                'colspan' => $this->getColspanClass()
-            ]
-        ];
     }
 
     public function setIdentifier($identifier)
@@ -71,6 +63,10 @@ class Component implements Backbone, Reactive
 
     final public function __toString()
     {
+        return $this->backbone();
+    }
+
+    public function render() {
         return $this->backbone();
     }
 }

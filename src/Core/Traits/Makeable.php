@@ -6,8 +6,8 @@ use Citadel\Citadel;
 use Illuminate\Support\Str;
 
 trait Makeable {
-    protected string $name;
-    protected $title;
+    public $name;
+    public $title;
 
     public function getName()
     {
