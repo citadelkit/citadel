@@ -32,11 +32,12 @@
 <!-- endbuild -->
 
 
-@if (true)
+@if (config('citadel.mode') == "development")
     <script type="module" src="http://localhost:5174/@@vite/client"></script>
     <script type="module" src="http://localhost:5174/resources/js/index.js"></script>
     <link rel="stylesheet" href="http://localhost:5174/resources/css/main.scss">
-@else
-    <link rel="stylesheet" href="{{ vitadel('resources/css/main.css') }}">
-    <script src="{{ vitadel('resources/js/index.js') }}" defer></script>
+@endif
+
+@if(config('citadel.mode') == "build")
+    @vitadel('resources/css/main.scss', 'resources/js/index.js')
 @endif

@@ -11,6 +11,7 @@ use Citadel\View\Components\HeaderNavUser;
 use Citadel\View\Components\NavContainer;
 use Citadel\View\Components\NavHeading;
 use Citadel\View\Components\NavMenuItem;
+use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,18 @@ class CitadelServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        
+        // $result = (new Vite)->useBuildDirectory('citadelkit')
+        // ->withEntryPoints(['resources/css/index.js'])
+        // ->toHtml();
+        Blade::directive('vitadel', function ($expression) {
+            $expression = explode(',', str_replace(["'", " "], "", $expression));            
+            $result = ((new Vite)->useBuildDirectory('citadelkit')
+                    ->useHotFile(__DIR__."/../../resources/js")
+                    ->withEntryPoints($expression))
+                    ->toHtml();
+            return $result;
+        });
         $this->publishes([
             __DIR__ . '/../../dist' => public_path('citadelkit'),
         ], 'citadel');  

@@ -1,5 +1,7 @@
 import Swal from "sweetalert2";
 import { serializeFormData } from "../helpers/form_submit";
+import CitadelRedirect from "./redirect";
+import CitadelToast from "./toast";
 
 export default function CitadelForm(el) {
     $(el).on('submit', function (e) {
@@ -51,6 +53,15 @@ export function CitadelFormWatchEvent() {
         })
 }
 
+const CitadelObject = {
+    redirect(args) {
+        CitadelRedirect(args)
+    },
+    toast(args) {
+        CitadelToast(args)
+    }
+}
+
 const response = {
     validation(json) {
         Swal.fire({
@@ -72,6 +83,7 @@ const response = {
         }
     },
     success(json) {
+        console.log(json) 
         if (json.citadel) {
             this.init_citadel_object(json.citadel);
         }
@@ -85,10 +97,20 @@ const response = {
     handle_swal(config) {
         Swal.fire(config)
     },
-    init_citadel_object(citadel_response) {
-        if (citadel_response.sweet_alert) {
-            const sw = citadel_response.sweet_alert
-            console.log(sw.config)
+
+    init_citadel_object(c) {
+        if(c.constructor === Array) {
+            c.forEach(function(v, i) {
+                CitadelObject[i](v)
+            })
+        }
+        if(c.constructor === Object) {
+            Object.keys(c).forEach(function(key) {
+                CitadelObject[key](c[key])
+            })
+        }
+        if (c.sweet_alert) {
+            const sw = c.sweet_alert
             Swal.fire(sw.config)
                 .then(r => {
                     console.log(r)
@@ -113,6 +135,13 @@ const response = {
 }
 
 function ajaxResponseHandler({ responseJSON: json, status, statusText }) {
+    if (json == undefined) {
+        Swal.fire({
+            title: "No Response!",
+            html: "Server doesnt give any response.<br> Try contact your administrator"
+        });
+        return;
+    }
     if (status == 422) {
         return response.validation(json);
     }
@@ -124,6 +153,17 @@ function ajaxResponseHandler({ responseJSON: json, status, statusText }) {
     if (status == 200) {
         return response.success(json);
     }
+
+    if (status == 500) {
+        if(json.message) {
+            Swal.fire({
+                title: "Internal Server Error",
+                html: json.message
+            });
+        }
+        return response.bad_request(json);
+    }
+
     Swal.fire({
         title: statusText,
         html: JSON.stringify(json)
@@ -150,6 +190,8 @@ async function formSubmit({
         type: method ?? "POST",
         data: JSON.stringify(data),
         success: function (data, textStatus, res) {
+            console.log(res)
+            alert(res)
             ajaxResponseHandler(res)
         },
         error: function (res) {
