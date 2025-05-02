@@ -19,6 +19,7 @@ use Illuminate\Database\Query\Builder as DatabaseQueryBuilder;
 class Table extends Wrapper
 {
     protected $query;
+    protected $array;
     protected $default = [];
     protected $filters = [];
     protected $actions = [];
@@ -263,6 +264,13 @@ class Table extends Wrapper
         return $this;
     }
 
+    public function array(callable|array $array)
+    {
+        $this->array = $array;
+        return $this;
+    }
+
+
     private function handleRelation(&$query, $columns) {}
 
     protected function  preFetch($query)
@@ -326,12 +334,11 @@ class Table extends Wrapper
 
     protected function postFetch($data, $schema)
     {
-        $data = $data->map(function ($model, $key) use ($schema) {
-            $new = $model->toArray();
+        $data = collect($data)->map(function ($model, $key) use ($schema) {            
+            $new = is_array($model) ? $model : $model->toArray();
             foreach ($schema as $column) {
                 $value = $model[$column->getName()] ?? null;
                 $column->passData([...$this->pass_data]);
-                
                 $newValue = $column->applyValue(compact('value', 'model', 'key'));
                 if ($newValue != null) {
                     $new[$column->getName()] = $newValue;
@@ -340,6 +347,7 @@ class Table extends Wrapper
             return $new;
         });
         return $data;
+
     }
 
     public function renderReactive(string $component_name)
@@ -373,6 +381,15 @@ class Table extends Wrapper
         return clone $this->query;
     }
 
+    protected function getArray()
+    {
+        if (is_callable($this->array)) {
+            return $this->callCallable($this->array, ...$this->pass_data);
+        }        
+        return $this->array ?? [];
+        
+    }
+
     public function reactive()
     {
         $this->preProcessing();
@@ -381,20 +398,29 @@ class Table extends Wrapper
         $search = request()->get('search');
         $offset = request()->get('start');
         $limit = request()->get('length');
-        $total_count = $this->getQuery()->count();
-        $preparedQuery = $this->preFetch($this->getQuery());
-        $filtered_count = $preparedQuery->count();
-        $data = $preparedQuery
-            ->when($offset, fn($q) => $q->offset($offset))
-            ->when($limit, fn($q) => $q->limit($limit))
-            ->get();
-        $data = $this->postFetch($data, $this->schema);
+        if($this->query){
+            $total_count = $this->getQuery()->count();
+            $preparedQuery = $this->preFetch($this->getQuery());
+            $filtered_count = $preparedQuery->count();
+          
+            $data = $preparedQuery
+                ->when($offset, fn($q) => $q->offset($offset))
+                ->when($limit, fn($q) => $q->limit($limit))
+                ->get();
+            $data = $this->postFetch($data, $this->schema);  
+        }
+        //if using array
+        if($this->array){
+           $data = $this->postFetch($this->getArray() ,$this->schema) ; 
+           $total_count =  count($this->getArray());
+           $filtered_count = $total_count;           
+        }
 
         return [
             "draw" => request()->get('draw'),
-            "recordsTotal" => $total_count,
-            "recordsFiltered" => $filtered_count,
-            "data" => $data
+            "recordsTotal" => $total_count ?? 0,
+            "recordsFiltered" => $filtered_count ?? 0,
+            "data" => $data ?? []
         ];
     }
 }
