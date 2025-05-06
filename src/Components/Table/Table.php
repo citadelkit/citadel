@@ -337,7 +337,7 @@ class Table extends Wrapper
         $data = collect($data)->map(function ($model, $key) use ($schema) {            
             $new = is_array($model) ? $model : $model->toArray();
             foreach ($schema as $column) {
-                $value = $model[$column->getName()] ?? null;
+                $value = is_array($model) ? ($model[$column->getName()] ?? null) : ($model->{$column->getName()} ?? null);
                 $column->passData([...$this->pass_data]);
                 $newValue = $column->applyValue(compact('value', 'model', 'key'));
                 if ($newValue != null) {
