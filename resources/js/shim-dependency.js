@@ -24,5 +24,6 @@ $.fn.inputmask = function (maskOrAlias, opts) {
 window.$ = $;
 window.jQuery = $;
 window.jquery = $;
+window.Swal = Swal
 
 console.log("INPUTMASK", $.fn.inputmask)
