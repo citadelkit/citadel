@@ -40,7 +40,13 @@ export default defineConfig({
             output: {
                 entryFileNames: "assets/[name]-[hash].js", // ⬅️ Keep hashes for caching
                 chunkFileNames: "assets/chunks/[name]-[hash].js",
-                assetFileNames: "assets/[name]-[hash].[ext]" // ⬅️ Keep hashes
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name.endsWith('.css')) {
+                        return 'assets/css/[name]-[hash][extname]';
+                    }
+                    return 'assets/[name]-[hash][extname]';
+                }
+                // "assets/[name]-[hash].[ext]" // ⬅️ Keep hashes
             }
         }
     }
