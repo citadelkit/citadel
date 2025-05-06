@@ -317,12 +317,12 @@ class Table extends Wrapper
             );
 
         // Order
-
+            
         $query
             ->when(
                 request()->order[0] ?? null,
                 function ($q, $order) use ($columns) {
-                    $c = $columns[$order['name']] ?? null;
+                    $c = $columns[$order['column']] ?? null;
                     if ($c && !$c['has_levels']) {
                         if ($c['orderable']) $q->orderBy($order['name'], $order['dir']);
                     }
