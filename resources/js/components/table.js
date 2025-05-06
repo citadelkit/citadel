@@ -3,6 +3,8 @@ import 'datatables.net-buttons-bs5';
 import 'datatables.net-responsive-bs5';
 import { addQueryParams, initBootstrapComponents } from '../helpers';
 import { serializeFormData } from '../helpers/form_submit';
+import CitadelButton from './button';
+
 
 const basic = {
     layout: {
@@ -31,6 +33,7 @@ export function CitadelTableWatchEvent() {
             table.processing(true)
             await table.ajax.url(addQueryParams(url, args)).load()
             table.processing(false)
+
         })
     window.addEventListener(
         'CTable:apply-filter',
@@ -115,7 +118,10 @@ function init($table) {
     )
 
     dt.on('draw', function() {
-        initBootstrapComponents()
+        initBootstrapComponents()        
+        $(`table#${$table.attr('id')} [data-ct-onclick]`).each(function () {
+            CitadelButton($(this));
+        });
     })
 
     if (c.numbering) {
