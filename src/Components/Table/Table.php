@@ -238,7 +238,7 @@ class Table extends Wrapper
         if ($this->numbering) {
             array_unshift(
                 $this->schema,
-                Column::make('no', __("table_numbering_column_title"))
+                Column::make('no', __("No"))
                     ->value(fn($model) => ActionGroup::make('action')
                         ->style("min-width: 100px;")
                         ->passData($model)

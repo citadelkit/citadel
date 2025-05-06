@@ -105,20 +105,21 @@ const response = {
             })
         }
         if(c.constructor === Object) {
-            Object.keys(c).forEach(function(key) {
-                CitadelObject[key](c[key])
-            })
-        }
-        if (c.sweet_alert) {
-            const sw = c.sweet_alert
-            Swal.fire(sw.config)
-                .then(r => {
-                    console.log(r)
-                    this.handle_after_confirm(sw)
+            if(c.sweet_alert){
+                const sw = c.sweet_alert
+                Swal.fire(sw.config)
+                    .then(r => {
+                        console.log(r)
+                        this.handle_after_confirm(sw)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }else{
+                Object.keys(c).forEach(function(key) {
+                    CitadelObject[key](c[key])
                 })
-                .catch(error => {
-                    console.log(error)
-                })
+            }
         }
     },
     handle_after_confirm({ after_confirm, after_confirm_args,redirectUrl }) {
@@ -191,7 +192,7 @@ async function formSubmit({
         data: JSON.stringify(data),
         success: function (data, textStatus, res) {
             console.log(res)
-            alert(res)
+            // alert(res)
             ajaxResponseHandler(res)
         },
         error: function (res) {
