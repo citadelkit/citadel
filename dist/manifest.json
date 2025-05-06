@@ -116,19 +116,19 @@
     "src": "node_modules/summernote/dist/font/summernote.woff2"
   },
   "resources/css/main.scss": {
-    "file": "assets/main-86ed7c4a.css",
+    "file": "assets/css/main-86ed7c4a.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
   "resources/js/index.css": {
-    "file": "assets/index-9bd70ac8.css",
+    "file": "assets/css/index-9bd70ac8.css",
     "src": "resources/js/index.css"
   },
   "resources/js/index.js": {
     "css": [
-      "assets/index-9bd70ac8.css"
+      "assets/css/index-9bd70ac8.css"
     ],
-    "file": "assets/main-3023877c.js",
+    "file": "assets/main-b99a56ed.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
