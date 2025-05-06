@@ -3,6 +3,7 @@
 namespace Citadel\Providers;
 
 use Citadel\AuthRouteMethods;
+use Citadel\Commands\CitadelCommand;
 use Citadel\Components;
 use Citadel\Components\Control\Button;
 use Citadel\View\Components\HeaderNavContainer;
@@ -28,6 +29,10 @@ class CitadelServiceProvider extends ServiceProvider
         Route::macro('citadel', function ($uri, $action) {
             return Route::match(['get', 'post'], $uri, $action);
         });
+
+        $this->commands([
+            CitadelCommand::class
+        ]);
     }
 
     public function boot()

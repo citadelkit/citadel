@@ -13,7 +13,16 @@ import '@support/dash-ui/src/assets/js/sidebarMenu.js';
 
 import 'autonumeric';
 import 'summernote';
+import Inputmask from 'inputmask';
+$.fn.inputmask = function (maskOrAlias, opts) {
+    return this.each(function () {
+        const im = new Inputmask(maskOrAlias, opts);
+        im.mask(this);  
+    });
+};
 
 window.$ = $;
 window.jQuery = $;
 window.jquery = $;
+
+console.log("INPUTMASK", $.fn.inputmask)
