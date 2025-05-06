@@ -116,7 +116,7 @@
     "src": "node_modules/summernote/dist/font/summernote.woff2"
   },
   "resources/css/main.scss": {
-    "file": "assets/main-490fc077.css",
+    "file": "assets/main-86ed7c4a.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
@@ -128,7 +128,7 @@
     "css": [
       "assets/index-9bd70ac8.css"
     ],
-    "file": "assets/main-e371e479.js",
+    "file": "assets/main-bd69204f.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
