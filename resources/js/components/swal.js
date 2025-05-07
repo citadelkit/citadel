@@ -162,9 +162,10 @@ export default async function CitadelSwal(args) {
         }
     })
 
-    function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, use_event }) {
-        if (use_event) {
-            let def = use_event;
+    function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, useEvent }) {
+        if (useEvent) {
+            let def = useEvent;
+            console.log(def)
             const event = new CustomEvent(def.event, {
                 detail: { ...def, srcElement: "" }
             })
