@@ -1,6 +1,8 @@
 import { getFormData } from "../helpers";
 import { getPlugins, handleComponent } from "../helpers/plugins";
 
+
+
 export default async function CitadelSwal(args) {
     const { method, config, after_confirm, after_confirm_args, id, name } = args;
     if (config.view) {
@@ -95,25 +97,56 @@ export default async function CitadelSwal(args) {
             }
             console.log();
             Pace.track(function () {
-                $.ajax({
-                    method: "POST",
-                    headers: headers,
-                    url: after_confirm_args
-                })
-                    .fail(function (res) {
-                        if (res.citadel) {
-                            getPlugins(res.citadel).init()
-                        }
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        method: "POST",
+                        headers: headers,
+                        url: after_confirm_args
                     })
-                    .done(function (res) {
-                        if (res.citadel) {
-                            getPlugins(res.citadel).init()
-                        }
-                    })
-                    .always(function () {
-                        $.LoadingOverlay("hide");
-                    })
+                        .done(function (res) {
+                            // Check if there is a citadel property in the response and initialize plugins
+                            if (res.citadel) {
+                                getPlugins(res.citadel).init();
+                            }
+
+                            // Resolve the promise with the response from the server
+                            resolve(res);
+                        })
+                        .fail(function (res) {
+                            // Handle the error (e.g., initialize plugins or show error messages)
+                            if (res.citadel) {
+                                getPlugins(res.citadel).init();
+                            }
+
+                            // Reject the promise in case of failure
+                            reject(res);
+                        })
+                        .always(function () {
+                            $.LoadingOverlay("hide");
+                        });
+                });
             })
+                .then((response) => {
+                    // Handle the successful response here
+                    console.log("Request was successful:", response);
+                    if (response.citadel.args) {
+                        const sw = response.citadel.args
+                        if (sw.config) {
+                            Swal.fire(sw.config)
+                                .then(r => {
+                                    afterConfirm(sw);
+                                })
+                                .catch(e => {
+                                    console.log(e)
+                                })
+                        }
+                    }
+                })
+                .catch((error) => {
+                    // Handle the failed request here
+                    console.log("Request failed:", error);
+                });
+
         }
 
         if (after_confirm == "plugins") {
@@ -128,4 +161,21 @@ export default async function CitadelSwal(args) {
             }
         }
     })
+
+    function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, use_event }) {
+        if (use_event) {
+            let def = use_event;
+            const event = new CustomEvent(def.event, {
+                detail: { ...def, srcElement: "" }
+            })
+            window.dispatchEvent(event)
+        }
+        if (redirectUrl) {
+            window.location.href = redirectUrl
+        }
+        if (after_confirm == "none") return
+        if (after_confirm == "reload") {
+            window.location.reload()
+        }
+    }
 }
