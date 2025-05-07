@@ -278,7 +278,7 @@ class SweetAlert extends Component implements JsonSerializable
     public function jsonSerialize(): mixed {
         return [
             'component' => 'sweetalert',
-            'sweet_alert' => $this->getData()
+            'args' => $this->getData()
         ];
     }
 }
