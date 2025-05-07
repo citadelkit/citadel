@@ -105,8 +105,8 @@ const response = {
             })
         }
         if(c.constructor === Object) {
-            if(c.sweet_alert){
-                const sw = c.sweet_alert
+            if(c.args){
+                const sw = c.args
                 Swal.fire(sw.config)
                     .then(r => {
                         console.log(r)
