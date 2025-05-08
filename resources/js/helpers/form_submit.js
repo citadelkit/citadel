@@ -32,14 +32,14 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
         'x-request-via': "citadel-form-wrapped"
     }
     // alert("Method" + method)
-    $.LoadingOverlay('show')
+    $.LoadingOverlay()
     return $.ajax({
         url: url,
         headers: headers,
         type: method,
         data: JSON.stringify(data),
         success: function (json) {
-            $.LoadingOverlay("hide");
+            $.LoadingOverlay("remove");
             if (json.swal) {
                 Swal.fire(json.swal).then(() => {
                     if (json.swal.redirectUrl) {
@@ -67,7 +67,7 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
         },
         error: function (res) {
             const json = res.responseJSON
-            $.LoadingOverlay("hide");
+            $.LoadingOverlay("remove");
             if (res.status == 422) {
                 showFormValidationError(json)
                 return;
@@ -97,7 +97,7 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
             }
         },
         complete: () => {
-            $.LoadingOverlay('hide')
+            $.LoadingOverlay('remove')
         }
     });
 }
