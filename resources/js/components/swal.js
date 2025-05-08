@@ -1,14 +1,15 @@
 import { getFormData } from "../helpers";
 import { getPlugins, handleComponent } from "../helpers/plugins";
+import { handleEvent } from "./button";
 
 
 
 export default async function CitadelSwal(args) {
     const { method, config, after_confirm, after_confirm_args, id, name } = args;
     if (config.view) {
-        $.LoadingOverlay('show')
+        $.LoadingOverlay()
         config.html = await $.get(config.view)
-        $.LoadingOverlay('hide')
+        $.LoadingOverlay('remove')
     }
     const isForm = $(config.html).find('form').length > 0;
     if (config.sections?.script) {
@@ -77,12 +78,12 @@ export default async function CitadelSwal(args) {
     }).then((result) => {
         console.log(result);
         if (result.dismiss == "cancel" || result.dismiss == "backdrop" || result.dismiss == "esc") {
-            $.LoadingOverlay('hide')
+            $('body').LoadingOverlay('remove')
             return
         }
 
         if (after_confirm == "reload") {
-            $.LoadingOverlay('show')
+            $('body').LoadingOverlay()
             window.location.reload()
         }
         if (after_confirm == "redirect") {
@@ -165,17 +166,15 @@ export default async function CitadelSwal(args) {
     function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, useEvent }) {
         if (useEvent) {
             let def = useEvent;
-            console.log(def)
-            const event = new CustomEvent(def.event, {
-                detail: { ...def, srcElement: "" }
-            })
-            window.dispatchEvent(event)
+            handleEvent(def, '')
         }
         if (redirectUrl) {
+            $('body').LoadingOverlay()
             window.location.href = redirectUrl
         }
         if (after_confirm == "none") return
         if (after_confirm == "reload") {
+            $('body').LoadingOverlay()
             window.location.reload()
         }
     }

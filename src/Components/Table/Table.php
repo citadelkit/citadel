@@ -302,14 +302,14 @@ class Table extends Wrapper
                 request()->search,
                 function ($q, $search) use ($columns) {
                     $q->where(function ($q1) use ($columns, $search) {
-                        foreach ($columns as $c) {
+                        foreach ($columns as $c) {// ilike not support sqllite
                             if (!$c['has_levels'] && $c['searchable']) {
-                                $q1->orWhere($c['name'], 'ilike', "%" . $search['value'] . "%");
+                                $q1->orWhereRaw("LOWER({$c['name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                             } else if ($c['has_levels'] && $c['searchable']) {
                                 $q1->orWhereHas($c['relations'], function ($q) use ($c, $search) {
-                                    $q->where($c['field_name'], 'ilike', "%" . $search['value'] . "%");
+                                    $q->whereRaw("LOWER({$c['field_name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                                 });
-                            }
+                            }                            
                         }
                     });
                     // dd($q->toSql());
@@ -401,7 +401,7 @@ class Table extends Wrapper
         if($this->query){
             $total_count = $this->getQuery()->count();
             $preparedQuery = $this->preFetch($this->getQuery());
-            $filtered_count = $preparedQuery->count();
+            $filtered_count = $preparedQuery->count(); //if count error check sql support
           
             $data = $preparedQuery
                 ->when($offset, fn($q) => $q->offset($offset))
