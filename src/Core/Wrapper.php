@@ -132,7 +132,7 @@ class Wrapper implements Reactive
     public function backbone()
     {
 
-        $result = view('citadel-template::core.wrapper', $this->data())->with('html', $this->renderSchema());
+        $result = view('citadel-template::dash.wrapper', $this->data())->with('html', $this->renderSchema());
         return $result;
     }
 

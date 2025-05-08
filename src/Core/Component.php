@@ -56,7 +56,7 @@ class Component extends LaravelBladeComponent implements Backbone, Reactive
 
     public function backbone()
     {
-        return view('citadel-template::core.component', $this->data());
+        return view('citadel-template::dash.component', $this->data());
     }
 
     public function parser() {}
