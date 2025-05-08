@@ -304,12 +304,12 @@ class Table extends Wrapper
                     $q->where(function ($q1) use ($columns, $search) {
                         foreach ($columns as $c) {// ilike not support sqllite
                             if (!$c['has_levels'] && $c['searchable']) {
-                                $q1->orWhere($c['name'], 'like', "%" . $search['value'] . "%");
+                                $q1->orWhereRaw("LOWER({$c['name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                             } else if ($c['has_levels'] && $c['searchable']) {
                                 $q1->orWhereHas($c['relations'], function ($q) use ($c, $search) {
-                                    $q->where($c['field_name'], 'like', "%" . $search['value'] . "%");
+                                    $q->whereRaw("LOWER({$c['field_name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                                 });
-                            }
+                            }                            
                         }
                     });
                     // dd($q->toSql());
