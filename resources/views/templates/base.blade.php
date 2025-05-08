@@ -1,6 +1,13 @@
-@extends('citadel-template::dash.base')
-@section('content')
-    <div class="{{ $style['class'] }}" style="{{ $style['columns'] }}">
-        {!! $html !!}
-    </div>
-@endsection
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ $page_title }}</title>
+    @include('citadel-template::dash.head')
+</head>
+
+<body class="bg-light">
+    @yield('content')
+</body>
+
+</html>

@@ -13,6 +13,7 @@ import '@support/dash-ui/src/assets/js/sidebarMenu.js';
 
 import 'autonumeric';
 import 'summernote';
+import toastr from 'toastr';
 import Inputmask from 'inputmask';
 import Swal from 'sweetalert2';
 $.fn.inputmask = function (maskOrAlias, opts) {
@@ -25,5 +26,4 @@ window.$ = $;
 window.jQuery = $;
 window.jquery = $;
 window.Swal = Swal
-
-console.log("INPUTMASK", $.fn.inputmask)
+window.toastr = toastr
