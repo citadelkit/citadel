@@ -1,5 +1,6 @@
 import { getFormData } from "../helpers";
 import { getPlugins, handleComponent } from "../helpers/plugins";
+import { handleEvent } from "./button";
 
 
 
@@ -165,11 +166,7 @@ export default async function CitadelSwal(args) {
     function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, useEvent }) {
         if (useEvent) {
             let def = useEvent;
-            console.log(def)
-            const event = new CustomEvent(def.event, {
-                detail: { ...def, srcElement: "" }
-            })
-            window.dispatchEvent(event)
+            handleEvent(def, '')
         }
         if (redirectUrl) {
             window.location.href = redirectUrl

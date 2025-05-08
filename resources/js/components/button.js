@@ -39,7 +39,7 @@ function flyout() {
 }
 
 
-function handleEvent(def, $el) {
+export function handleEvent(def, $el) {
     const event = new CustomEvent(def.event, {
         detail: { ...def, srcElement: $el }
     })
