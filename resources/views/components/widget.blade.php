@@ -1,4 +1,4 @@
-<div style="{{ $style['colspan'] }} border-radius: .35rem;" class="citadel-widget {{ $color }} overflow-hidden"
+<div style="{{ $style['colspan'] }} border-radius: .35rem; position:relative;" class="citadel-widget {{ $color }} overflow-hidden"
     config="{{ json_encode($config) }}" id="{{ $name }}">
     <div class="card {{ $theme[0] }}" id="background">
         <div class="card-body py-0" style="min-height: 130px">
