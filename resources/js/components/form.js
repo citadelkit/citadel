@@ -184,7 +184,7 @@ async function formSubmit({
         'Content-Type': "application/json",
         'x-request-via': "citadel-form-wrapped"
     }
-
+    $('body').loadingOverlay()
     return await $.ajax({
         url: url,
         headers: headers,
@@ -197,6 +197,9 @@ async function formSubmit({
         },
         error: function (res) {
             ajaxResponseHandler(res)
+        },complete: function(){
+    $('body').loadingOverlay('remove')
+
         }
     })
 

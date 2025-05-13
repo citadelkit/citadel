@@ -709,3 +709,17 @@ table.citadel-table thead th {
     background: #e9eff7 !important;
     color: #1b1b1b !important;
 }
+
+
+/* overlay default*/
+.loading-overlay {
+    /* position: relative; */
+    z-index: 9999;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: grid;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
