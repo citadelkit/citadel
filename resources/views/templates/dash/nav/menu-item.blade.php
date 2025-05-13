@@ -6,7 +6,7 @@
             {!! $icon !!} {{ $title }}
         </a>
         <div id="nav-{{ strSnake($title) }}" class="collapse {{ request()->is('pages/*') ? 'show' : '' }}"
-            data-bs-parent="#{{ $parent }}">
+            data-bs-parent="#{{ strSnake($parent) }}">
             <ul class="nav flex-column">
                 {{ $slot }}
             </ul>

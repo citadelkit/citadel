@@ -19,6 +19,7 @@ class NavMenuItem extends VerticalNavigation
     public function render()
     {
         $this->icon = Icon::render($this->icon);
+        $this->parent = strSnake($this->parent);
         return view("citadel-template::dash.nav.menu-item");
     }
 }
