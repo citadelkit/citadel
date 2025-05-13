@@ -30,37 +30,45 @@ class CitadelServiceProvider extends ServiceProvider
             return Route::match(['get', 'post'], $uri, $action);
         });
 
-        $this->commands([
-            CitadelCommand::class
-        ]);
+        $this->commands([CitadelCommand::class]);
     }
 
     public function boot()
     {
         // Route::mixin(new AuthRouteMethods);
-        
-        // $result = (new Vite)->useBuildDirectory('citadelkit')
-        // ->withEntryPoints(['resources/css/index.js'])
-        // ->toHtml();
+        $expression = "'resources/css/main.scss', 'resources/js/index.js'";
+        $expression = explode(',', str_replace(["'", ' '], '', $expression));
+        $result = (new Vite())
+                ->useBuildDirectory('citadelkit')
+                ->useHotFile(__DIR__ . '/../../resources/js')
+                ->withEntryPoints($expression)
+                ->toHtml();
+        // dd($result);
         Blade::directive('vitadel', function ($expression) {
-            $expression = explode(',', str_replace(["'", " "], "", $expression));            
-            $result = ((new Vite)->useBuildDirectory('citadelkit')
-                    ->useHotFile(__DIR__."/../../resources/js")
-                    ->withEntryPoints($expression))
-                    ->toHtml();
+            $expression = explode(',', str_replace(["'", ' '], '', $expression));
+            $result = (new Vite())
+                ->useBuildDirectory('citadelkit')
+                ->withEntryPoints($expression)
+                ->toHtml();
             return $result;
         });
-        $this->publishes([
-            __DIR__ . '/../../dist' => public_path('citadelkit'),
-        ], 'citadel');  
-        
-        $this->publishes([
-            __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),
-        ], 'citadel');
+        $this->publishes(
+            [
+                __DIR__ . '/../../dist' => public_path('citadelkit'),
+            ],
+            'citadel',
+        );
 
-        $this->loadViewsFrom(__DIR__ . "/../../resources/views/components", 'citadel-component');
-        $this->loadViewsFrom(__DIR__ . "/../../resources/views/templates", 'citadel-template');
-        $this->mergeConfigFrom(__DIR__ . "/../config/citadel.php", 'citadel-config');
+        $this->publishes(
+            [
+                __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),
+            ],
+            'citadel',
+        );
+
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
+        $this->mergeConfigFrom(__DIR__ . '/../config/citadel.php', 'citadel-config');
         $this->registerComponent();
     }
 
@@ -79,9 +87,9 @@ class CitadelServiceProvider extends ServiceProvider
         Blade::component('header-nav-notification', HeaderNavNotification::class);
         Blade::component('header-nav-menu-item', HeaderNavMenuItem::class);
 
-        Blade::directive('citadel', function($callback) {
+        Blade::directive('citadel', function ($callback) {
             class_alias(Button::class, 'Button');
-            $x = eval("return ".$callback.";");
+            $x = eval('return ' . $callback . ';');
             $view = $x->resolveView();
             $data = $x->data();
             if ($view instanceof \Closure) {
