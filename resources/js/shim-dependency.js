@@ -14,6 +14,7 @@ import Select2 from 'select2';
 import toastr from 'toastr';
 import Swal from 'sweetalert2';
 
+
 window.Swal = Swal;
 window.swal = Swal;
 window.toastr = toastr;
@@ -33,3 +34,13 @@ jQuery.fn.select2 = function (opts) {
 jQuery.loadingOverlay = () => {
   console.log("Use $('.body').loadingOverlay()");
 };
+
+
+import 'apexcharts';
+import 'prismjs/prism.js';
+import 'prismjs/plugins/toolbar/prism-toolbar.min.js';
+import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js';
+
+import '@support/dash-ui/src/assets/js/main.js';
+import '@support/dash-ui/src/assets/js/feather.js';
+import '@support/dash-ui/src/assets/js/sidebarMenu.js';
