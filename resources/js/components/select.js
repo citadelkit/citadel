@@ -1,40 +1,41 @@
-import Select2 from 'select2';
 import '@selectize/selectize';
-import { citadelFetchComponentLifeCycle } from '../helpers';
+import { citadelFetchComponentLifeCycle, isEmpty } from '../helpers';
 
 export default function CitadelSelect(el) {
     if (el.attr('citadel-input')) {
         return old(el)
     }
+    console.log("SELECT EL", el);
+    const config = getConfig(el)
+    $(el).select2(config)
+}
 
-    const c = JSON.parse(el.attr('config'));
+const defaultConfig = {
+    multiple: true,
+    placeholder: "Choose an Option",
+    closeOnSelect: true,
+    ajax: null,
+    allowClear: false,
+    tags: false,
+}
+
+function getConfig(el) {
     const id = el.attr('id')
-
-    if(c.config == undefined) {
-        return;
-    }
-    let config = {
-        // plugins: ["clear_button"],
+    const cc = JSON.parse(el.attr('config') ?? "{}");
+    cc.config = $.extend(defaultConfig, cc.config, {
+        // multiple: !isEmpty($(el).attr('multiple')),
         dropdownParent: el.parent(),
         showAddOptionOnCreate: false,
-        ...c.config
-    }
+    })
 
-    if(c.reactive) {
-        config.ajax = {
+    if(cc.reactive) {
+        cc.config.ajax = {
             url: citadelFetchComponentLifeCycle(id),
             dataType: 'json'
         }
     }
 
-    new Select2({
-        $container: el,
-        options: { options: config }
-    })
-
-    // el.select2(config)
-
-
+    return cc.config
 }
 
 function loadOptions(el, id) {

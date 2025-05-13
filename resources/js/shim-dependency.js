@@ -16,14 +16,22 @@ import 'summernote';
 import toastr from 'toastr';
 import Inputmask from 'inputmask';
 import Swal from 'sweetalert2';
+import Select2 from 'select2';
 $.fn.inputmask = function (maskOrAlias, opts) {
     return this.each(function () {
         const im = new Inputmask(maskOrAlias, opts);
         im.mask(this);  
     });
 };
+$.fn.select2 = function (opts) {
+    return this.each(function () {
+        new Select2(this, opts);
+    });
+};
+
 window.$ = $;
 window.jQuery = $;
 window.jquery = $;
 window.Swal = Swal
+window.swal = Swal
 window.toastr = toastr
