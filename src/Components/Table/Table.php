@@ -411,7 +411,7 @@ class Table extends Wrapper
         }
         //if using array
         if($this->array){
-           $data = $this->postFetch($this->getArray() ,$this->schema) ; 
+           $data = $this->postFetch(array_slice($this->getArray(),$offset ,$limit)  ,$this->schema) ; 
            $total_count =  count($this->getArray());
            $filtered_count = $total_count;           
         }
