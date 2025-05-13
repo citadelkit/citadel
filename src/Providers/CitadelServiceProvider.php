@@ -43,11 +43,6 @@ class CitadelServiceProvider extends ServiceProvider
                 $result = (new Vite())->useBuildDirectory('citadelkit')->withEntryPoints($expression)->toHtml();
                 return $result;
             });
-
-            $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
-            $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
-            $this->mergeConfigFrom(__DIR__ . '/../config/citadel.php', 'citadel-config');
-            $this->registerComponent();
         } else {
             $this->publishes(
                 [
@@ -63,6 +58,11 @@ class CitadelServiceProvider extends ServiceProvider
                 'citadel',
             );
         }
+        
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
+        $this->mergeConfigFrom(__DIR__ . '/../config/citadel.php', 'citadel-config');
+        $this->registerComponent();
     }
 
     public function registerComponent()
