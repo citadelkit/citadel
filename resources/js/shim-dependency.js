@@ -10,7 +10,6 @@ import 'select2';
 
 // Bind plugins to jQuery
 import Inputmask from 'inputmask';
-import Select2 from 'select2';
 import toastr from 'toastr';
 import Swal from 'sweetalert2';
 
@@ -23,11 +22,6 @@ jQuery.fn.inputmask = function (maskOrAlias, opts) {
   return this.each(function () {
     const im = new Inputmask(maskOrAlias, opts);
     im.mask(this);
-  });
-};
-jQuery.fn.select2 = function (opts) {
-  return this.each(function () {
-    new Select2(this, opts);
   });
 };
 
