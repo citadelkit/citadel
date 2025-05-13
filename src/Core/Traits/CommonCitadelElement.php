@@ -12,7 +12,7 @@ trait CommonCitadelElement {
 
     public function __construct()
     {
-        $this->config = config('citadel-config');
+        $this->config = config('citadel');
     }
     
     public function setName($name)

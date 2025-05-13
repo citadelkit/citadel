@@ -13,10 +13,10 @@ class Page extends Layout {
 
     public function __construct()
     {
-        $this->view = config('citadel-config.views.page');
-        $this->page_setup = config('citadel-config.template');
-        $this->sidebar = config('citadel-config.sidebar');
-        $this->header = config('citadel-config.header');
+        $this->view = config('citadel.views.page');
+        $this->page_setup = config('citadel.template');
+        $this->sidebar = config('citadel.sidebar');
+        $this->header = config('citadel.header');
     }
 
     public function view($viewName)

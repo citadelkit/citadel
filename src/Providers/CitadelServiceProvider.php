@@ -61,7 +61,7 @@ class CitadelServiceProvider extends ServiceProvider
         
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
-        $this->mergeConfigFrom(config_path('citadel.php'), 'citadel-config');
+        // $this->mergeConfigFrom(config_path('citadel.php'), 'citadel');
         $this->registerComponent();
     }
 
