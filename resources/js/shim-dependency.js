@@ -35,6 +35,7 @@ import 'prismjs/prism.js';
 import 'prismjs/plugins/toolbar/prism-toolbar.min.js';
 import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js';
 
+import "@support/dash-ui/src/assets/css/theme.css";
 import '@support/dash-ui/src/assets/js/main.js';
 import '@support/dash-ui/src/assets/js/feather.js';
 import '@support/dash-ui/src/assets/js/sidebarMenu.js';

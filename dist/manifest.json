@@ -132,19 +132,22 @@
     "src": "node_modules/summernote/dist/font/summernote.woff2"
   },
   "resources/css/main.scss": {
-    "file": "assets/css/main-2f7254af.css",
+    "file": "assets/css/main-c53c7f3d.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
   "resources/js/index.css": {
-    "file": "assets/css/index-9bd70ac8.css",
+    "file": "assets/css/index-61b72e32.css",
     "src": "resources/js/index.css"
   },
   "resources/js/index.js": {
-    "css": [
-      "assets/css/index-9bd70ac8.css"
+    "assets": [
+      "assets/chevron-down-152ec8d7.svg"
     ],
-    "file": "assets/main-04646624.js",
+    "css": [
+      "assets/css/index-61b72e32.css"
+    ],
+    "file": "assets/main-706dd92d.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
