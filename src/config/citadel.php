@@ -4,7 +4,7 @@ return [
     // Citadel Developer control "build" or "development"
     // "build" for end user (default)
     // "development" for developer 
-    'mode' => 'build',
+    'mode' => env('CITADEL_MODE', 'build'),
     'views' => [
         'page' => "citadel-template::core"
     ],
