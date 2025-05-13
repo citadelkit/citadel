@@ -302,14 +302,14 @@ class Table extends Wrapper
                 request()->search,
                 function ($q, $search) use ($columns) {
                     $q->where(function ($q1) use ($columns, $search) {
-                        foreach ($columns as $c) {// ilike not support sqllite
+                        foreach ($columns as $c) { // ilike not support sqllite
                             if (!$c['has_levels'] && $c['searchable']) {
                                 $q1->orWhereRaw("LOWER({$c['name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                             } else if ($c['has_levels'] && $c['searchable']) {
                                 $q1->orWhereHas($c['relations'], function ($q) use ($c, $search) {
                                     $q->whereRaw("LOWER({$c['field_name']}) LIKE ?", ['%' . strtolower($search['value']) . '%']);
                                 });
-                            }                            
+                            }
                         }
                     });
                     // dd($q->toSql());
@@ -317,7 +317,7 @@ class Table extends Wrapper
             );
 
         // Order
-            
+
         $query
             ->when(
                 request()->order[0] ?? null,
@@ -332,9 +332,53 @@ class Table extends Wrapper
         return $query;
     }
 
+    protected function preFetchArray($array)
+    {
+        $columns = $this->getColumnDefinition();
+        $searchableNames = array_column(array_filter($columns->toArray(), fn($col) => $col['searchable'] === true), 'name');
+        $orderables = array_column(array_filter($columns->toArray(), fn($col) => $col['orderable'] === true), 'name');
+
+        // search
+        $search = request()->search;
+        $filtered = array_filter($array, function ($item) use ($searchableNames, $search) {
+            foreach ($searchableNames as $field) {
+                if (isset($item[$field]) && stripos($item[$field], $search['value']) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        // order
+        $order = request()->get('order', []);
+        if (!empty($order) && isset($order[0])) {
+            $orderColumnIndex = $order[0]['column'];
+            $orderDirection = strtolower($order[0]['dir']) === 'desc' ? SORT_DESC : SORT_ASC;
+
+            $columnDefs = $columns->toArray();
+            if (isset($columnDefs[$orderColumnIndex])) {
+                $orderColumnName = $columnDefs[$orderColumnIndex]['name'] ?? null;
+
+                if ($orderColumnName && in_array($orderColumnName, $orderables)) {
+                    usort($filtered, function ($a, $b) use ($orderColumnName, $orderDirection) {
+                        $valueA = $a[$orderColumnName] ?? null;
+                        $valueB = $b[$orderColumnName] ?? null;
+
+                        return $orderDirection === SORT_DESC
+                            ? strcmp($valueB, $valueA)
+                            : strcmp($valueA, $valueB);
+                    });
+                }
+            }
+        }
+
+
+        return $filtered;
+    }
+
     protected function postFetch($data, $schema)
     {
-        $data = collect($data)->map(function ($model, $key) use ($schema) {            
+        $data = collect($data)->map(function ($model, $key) use ($schema) {
             $new = is_array($model) ? $model : $model->toArray();
             foreach ($schema as $column) {
                 $value = is_array($model) ? ($model[$column->getName()] ?? null) : ($model->{$column->getName()} ?? null);
@@ -347,7 +391,6 @@ class Table extends Wrapper
             return $new;
         });
         return $data;
-
     }
 
     public function renderReactive(string $component_name)
@@ -385,9 +428,8 @@ class Table extends Wrapper
     {
         if (is_callable($this->array)) {
             return $this->callCallable($this->array, ...$this->pass_data);
-        }        
+        }
         return $this->array ?? [];
-        
     }
 
     public function reactive()
@@ -398,22 +440,23 @@ class Table extends Wrapper
         $search = request()->get('search');
         $offset = request()->get('start');
         $limit = request()->get('length');
-        if($this->query){
+        if ($this->query) {
             $total_count = $this->getQuery()->count();
             $preparedQuery = $this->preFetch($this->getQuery());
             $filtered_count = $preparedQuery->count(); //if count error check sql support
-          
+
             $data = $preparedQuery
                 ->when($offset, fn($q) => $q->offset($offset))
                 ->when($limit, fn($q) => $q->limit($limit))
                 ->get();
-            $data = $this->postFetch($data, $this->schema);  
+            $data = $this->postFetch($data, $this->schema);
         }
         //if using array
-        if($this->array){
-           $data = $this->postFetch(array_slice($this->getArray(),$offset ,$limit)  ,$this->schema) ; 
-           $total_count =  count($this->getArray());
-           $filtered_count = $total_count;           
+        if ($this->array) {
+            $preparedArray = $this->preFetchArray($this->getArray());
+            $data = $this->postFetch(array_slice($preparedArray, $offset, $limit), $this->schema);
+            $total_count =  count($this->getArray());
+            $filtered_count = count($preparedArray);
         }
 
         return [
