@@ -56,7 +56,7 @@ class Column extends Component
                     $text .= " + $badges[1] " . __("more");
                 }
 
-                $html = view('components.badge', [
+                $html = view('citadel-component::badge', [
                     'text' => __($text),
                     'color' => 'light',
                     'fulltext' => $fulltext,
@@ -66,7 +66,7 @@ class Column extends Component
 
             $label = method_exists($value ?? '', 'label') ? $value->label() : $value;
             $color = method_exists($value ?? '', 'color') ? $value->color() : "light";
-            return view('components.badge', [
+            return view('citadel-component::badge', [
                 'text' => optional($value)->label() ?? (string) $value,
                 'color' => $color,
                 'fulltext' => $value,
