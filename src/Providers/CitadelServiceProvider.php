@@ -3,6 +3,7 @@
 namespace Citadel\Providers;
 
 use Citadel\AuthRouteMethods;
+use Citadel\Commands\BuildCommand;
 use Citadel\Commands\CitadelCommand;
 use Citadel\Components;
 use Citadel\Components\Control\Button;
@@ -16,6 +17,7 @@ use Citadel\View\Components\NavContainer;
 use Citadel\View\Components\NavHeading;
 use Citadel\View\Components\NavMenuItem;
 use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -30,46 +32,37 @@ class CitadelServiceProvider extends ServiceProvider
             return Route::match(['get', 'post'], $uri, $action);
         });
 
-        $this->commands([CitadelCommand::class]);
+        $this->commands([CitadelCommand::class, BuildCommand::class]);
     }
 
     public function boot()
     {
-        // Route::mixin(new AuthRouteMethods);
-        $expression = "'resources/css/main.scss', 'resources/js/index.js'";
-        $expression = explode(',', str_replace(["'", ' '], '', $expression));
-        $result = (new Vite())
-                ->useBuildDirectory('citadelkit')
-                ->useHotFile(__DIR__ . '/../../resources/js')
-                ->withEntryPoints($expression)
-                ->toHtml();
-        // dd($result);
-        Blade::directive('vitadel', function ($expression) {
-            $expression = explode(',', str_replace(["'", ' '], '', $expression));
-            $result = (new Vite())
-                ->useBuildDirectory('citadelkit')
-                ->withEntryPoints($expression)
-                ->toHtml();
-            return $result;
-        });
-        $this->publishes(
-            [
-                __DIR__ . '/../../dist' => public_path('citadelkit'),
-            ],
-            'citadel',
-        );
+        if (!App::runningInConsole()) {
+            Blade::directive('vitadel', function ($expression) {
+                $expression = explode(',', str_replace(["'", ' '], '', $expression));
+                $result = (new Vite())->useBuildDirectory('citadelkit')->withEntryPoints($expression)->toHtml();
+                return $result;
+            });
 
-        $this->publishes(
-            [
-                __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),
-            ],
-            'citadel',
-        );
+            $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
+            $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
+            $this->mergeConfigFrom(__DIR__ . '/../config/citadel.php', 'citadel-config');
+            $this->registerComponent();
+        } else {
+            $this->publishes(
+                [
+                    __DIR__ . '/../../dist' => public_path('citadelkit'),
+                ],
+                'citadel',
+            );
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
-        $this->mergeConfigFrom(__DIR__ . '/../config/citadel.php', 'citadel-config');
-        $this->registerComponent();
+            $this->publishes(
+                [
+                    __DIR__ . '/../config/citadel.php' => config_path('citadel.php'),
+                ],
+                'citadel',
+            );
+        }
     }
 
     public function registerComponent()
