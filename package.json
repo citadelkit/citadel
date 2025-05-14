@@ -86,6 +86,7 @@
     "sweetalert2": "^11.16.0",
     "switchery": "^0.0.2",
     "toastr": "^2.1.4",
+    "tom-select": "^2.4.3",
     "vite-plugin-css-injected-by-js": "^3.5.2"
   }
 }

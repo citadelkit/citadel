@@ -21,10 +21,10 @@ import CitadelForm, { CitadelFormWatchEvent } from "./form";
     }
 
     const through = function (callback) {
-        return function () {
+        return function (config) {
             if(this.length < 1) return
             return Array.from(this).forEach(el => {
-                callback($(el))
+                callback($(el), config)
             })
         }
     }
