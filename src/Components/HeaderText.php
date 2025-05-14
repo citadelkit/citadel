@@ -7,6 +7,14 @@ use Citadel\Core\Component;
 class HeaderText extends Text
 {
 
+    protected $text_class = "";
+
+    public function textClass($text_class)
+    {
+        $this->text_class = $text_class;
+        return $this;
+    }
+
     public function data()
     {
         return [
@@ -17,6 +25,9 @@ class HeaderText extends Text
             'style' => [
                 'colspan' => $this->getColspanClass(),
                 'class' => $this->class
+            ],
+            'text_class' => [
+                'class' => $this->text_class
             ]
         ];
     }
