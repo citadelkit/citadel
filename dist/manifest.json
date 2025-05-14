@@ -137,7 +137,7 @@
     "src": "resources/css/main.scss"
   },
   "resources/js/index.css": {
-    "file": "assets/css/index-61b72e32.css",
+    "file": "assets/css/index-4bc64941.css",
     "src": "resources/js/index.css"
   },
   "resources/js/index.js": {
@@ -145,9 +145,9 @@
       "assets/chevron-down-152ec8d7.svg"
     ],
     "css": [
-      "assets/css/index-61b72e32.css"
+      "assets/css/index-4bc64941.css"
     ],
-    "file": "assets/main-706dd92d.js",
+    "file": "assets/main-61b163c9.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
