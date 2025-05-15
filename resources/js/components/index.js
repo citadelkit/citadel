@@ -1,6 +1,6 @@
 import CitadelTable, { CitadelTableWatchEvent } from "./table";
 import CitadelFileUpload from "./fileupload";
-import CitadelSelect from "./select";
+// import CitadelSelect from "./select";
 import CitadelModal from "./modal";
 import CitadelFlyout from "./flyout";
 import CitadelWizard from "./wizard";
@@ -35,7 +35,7 @@ import CitadelForm, { CitadelFormWatchEvent } from "./form";
     $.fn.CFlyout = through(CitadelFlyout)
     $.fn.CModal = through(CitadelModal)
     $.fn.CFilepond = through(CitadelFileUpload)
-    $.fn.CSelect = through(CitadelSelect)
+    // $.fn.CSelect = through(CitadelSelect)
     $.fn.CTable = through(CitadelTable)
     $.fn.CWizard = through(CitadelWizard)
     $.fn.CDatepicker = through(CitadelDatepicker)

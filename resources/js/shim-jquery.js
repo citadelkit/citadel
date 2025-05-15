@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import "select2/dist/css/select2.min.css"; // Import CSS Select2
+// import "select2/dist/css/select2.min.css"; // Import CSS Select2
 import "pace-js";
 import datepickerFactory from "jquery-datepicker";
 datepickerFactory(jQuery)
