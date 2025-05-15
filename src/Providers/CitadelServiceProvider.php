@@ -41,7 +41,7 @@ class CitadelServiceProvider extends ServiceProvider
             Blade::directive('vitadel', function ($expression) {
                 $expression = explode(',', str_replace(["'", ' '], '', $expression));
                 $result = (new Vite())->useBuildDirectory('citadelkit')->withEntryPoints($expression)->toHtml();
-                return str_replace("http://", "https://", $result);
+                return $result;
             });
         } else {
             $this->publishes(
