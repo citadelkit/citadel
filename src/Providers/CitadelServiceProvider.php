@@ -39,9 +39,12 @@ class CitadelServiceProvider extends ServiceProvider
     {
         if (!App::runningInConsole()) {
             Blade::directive('vitadel', function ($expression) {
+                $scheme = request()->isSecure() ? 'https://' : 'http://';
+                $host = request()->getHttpHost();
+                config(['app.asset_url' => $scheme . $host]);
                 $expression = explode(',', str_replace(["'", ' '], '', $expression));
                 $result = (new Vite())->useBuildDirectory('citadelkit')->withEntryPoints($expression)->toHtml();
-                return $result;
+                return str_replace("http://", "https://", $result);
             });
         } else {
             $this->publishes(
