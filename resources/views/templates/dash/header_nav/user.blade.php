@@ -10,15 +10,16 @@
         <div class="px-4 pb-0 pt-2">
             <div class="lh-1">
                 <h5 class="mb-1">{{ $user['name'] }}</h5>
-                <a href="#" class="text-inherit fs-6">View my profile</a>
             </div>
             <div class="dropdown-divider mt-3 mb-2"></div>
         </div>
 
         <ul class="list-unstyled">
-            <x-header-nav-menu-item title="Account Settings" icon="settings"/>
-            <x-header-nav-menu-item title="Activity Log" icon="activity"/>
-            <x-header-nav-menu-item title="Sign Out" icon="power"/>
+            @if ($slot->hasActualContent())
+                {{ $slot }}
+            @else
+                <x-header-nav-menu-item title="Sign Out" icon="power" href="/auth/logout" />
+            @endif
             {{-- <x-header-nav-menu-item title="Edit Profile" icon="user"> --}}
             {{-- <li><a class="dropdown-item" href="#"><i class="me-2 icon-xxs" data-feather="activity"></i>Activity
                     Log</a></li>
