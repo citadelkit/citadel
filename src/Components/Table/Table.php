@@ -239,10 +239,12 @@ class Table extends Wrapper
             array_unshift(
                 $this->schema,
                 Column::make('no', __("No"))
-                    ->value(fn($model) => ActionGroup::make('action')
-                        ->style("min-width: 100px;")
-                        ->passData($model)
-                        ->schema($this->actions))
+                    ->value(1
+                        // fn($model) => ActionGroup::make('action')
+                        // ->style("min-width: 100px;")
+                        // ->passData($model)
+                        // ->schema($this->actions)
+                        )
             );
         }
 
