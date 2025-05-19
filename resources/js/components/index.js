@@ -9,6 +9,7 @@ import CitadelWidget from "./widget";
 import CitadelChart from "./chart";
 import CitadelButton from "./button";
 import CitadelForm, { CitadelFormWatchEvent } from "./form";
+import CitadelSelect from "./select";
 
 (function (window, document, $) {
     $.fn.instances = {
@@ -35,7 +36,7 @@ import CitadelForm, { CitadelFormWatchEvent } from "./form";
     $.fn.CFlyout = through(CitadelFlyout)
     $.fn.CModal = through(CitadelModal)
     $.fn.CFilepond = through(CitadelFileUpload)
-    // $.fn.CSelect = through(CitadelSelect)
+    $.fn.CSelect = through(CitadelSelect)
     $.fn.CTable = through(CitadelTable)
     $.fn.CWizard = through(CitadelWizard)
     $.fn.CDatepicker = through(CitadelDatepicker)

@@ -21,7 +21,7 @@ import { getPlugins } from "./helpers/plugins";
         $('[citadel-wizard]').CWizard()
         $('[citadel-modal]').CModal()
         // setSelectize($('select[citadel-input]'))
-        // $('select[citadel-input], .citadel-select, .select2').CSelect()
+        $('select[citadel-input], .citadel-select, .select2').CSelect()
         // setDatePicker($('[citadel-datepicker]'))
         $('[citadel-datepicker]').CDatepicker()
         setAppend($('button[citadel-append]'))

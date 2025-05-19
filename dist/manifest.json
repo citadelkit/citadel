@@ -131,13 +131,61 @@
     "file": "assets/summernote-9c7cb1a4.woff2",
     "src": "node_modules/summernote/dist/font/summernote.woff2"
   },
+  "resources/css/main-legacy.scss": {
+    "assets": [
+      "assets/bootstrap-icons-476adf42.woff2",
+      "assets/bootstrap-icons-bb1de989.woff",
+      "assets/materialdesignicons-webfont-0b183104.eot",
+      "assets/materialdesignicons-webfont-662fefa8.woff2",
+      "assets/materialdesignicons-webfont-a5928a0d.woff",
+      "assets/materialdesignicons-webfont-61e8aba5.ttf",
+      "assets/fa-brands-400-d7236a19.woff2",
+      "assets/fa-brands-400-808443ae.ttf",
+      "assets/fa-regular-400-e3456d12.woff2",
+      "assets/fa-regular-400-54cf6086.ttf",
+      "assets/fa-solid-900-aa759986.woff2",
+      "assets/fa-solid-900-d2f05935.ttf",
+      "assets/fa-v4compatibility-0ce9033c.woff2",
+      "assets/fa-v4compatibility-30f6abf6.ttf",
+      "assets/fontawesome-webfont-7bfcab6d.eot",
+      "assets/fontawesome-webfont-2adefcbc.woff2",
+      "assets/fontawesome-webfont-ba0c59de.woff",
+      "assets/fontawesome-webfont-aa58f33f.ttf",
+      "assets/fontawesome-webfont-ad615792.svg",
+      "assets/ui-icons_444444_256x240-7d4b7e87.png",
+      "assets/ui-icons_555555_256x240-5f992eff.png",
+      "assets/ui-icons_ffffff_256x240-8e0f2944.png",
+      "assets/ui-icons_777620_256x240-0334d95f.png",
+      "assets/ui-icons_cc0000_256x240-78555fcb.png",
+      "assets/ui-icons_777777_256x240-c02c3896.png",
+      "assets/summernote-a7142d8f.eot",
+      "assets/summernote-9c7cb1a4.woff2",
+      "assets/summernote-f9d40b38.woff",
+      "assets/summernote-8c19737f.ttf",
+      "assets/feather-93ae2328.eot",
+      "assets/feather-ef3c47cb.woff",
+      "assets/feather-6920da09.ttf",
+      "assets/feather-7f0825fa.svg"
+    ],
+    "file": "assets/style-legacy-f03459b7.js",
+    "isEntry": true,
+    "src": "resources/css/main-legacy.scss"
+  },
   "resources/css/main.scss": {
-    "file": "assets/css/main-b868d05e.css",
+    "file": "assets/css/main-7fb8f9af.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
+  "resources/js/index-legacy.js": {
+    "assets": [
+      "assets/chevron-down-152ec8d7.svg"
+    ],
+    "file": "assets/main-legacy-ea839b1d.js",
+    "isEntry": true,
+    "src": "resources/js/index-legacy.js"
+  },
   "resources/js/index.css": {
-    "file": "assets/css/index-61b72e32.css",
+    "file": "assets/css/index-60719d95.css",
     "src": "resources/js/index.css"
   },
   "resources/js/index.js": {
@@ -145,14 +193,19 @@
       "assets/chevron-down-152ec8d7.svg"
     ],
     "css": [
-      "assets/css/index-61b72e32.css"
+      "assets/css/index-60719d95.css"
     ],
-    "file": "assets/main-8febf90b.js",
+    "file": "assets/main-03c99db9.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
   "support/dash-ui/src/assets/fonts/feather-icons/icons/chevron-down.svg": {
     "file": "assets/chevron-down-152ec8d7.svg",
     "src": "support/dash-ui/src/assets/fonts/feather-icons/icons/chevron-down.svg"
+  },
+  "vite/legacy-polyfills-legacy": {
+    "file": "assets/polyfills-legacy-6c7a0722.js",
+    "isEntry": true,
+    "src": "vite/legacy-polyfills-legacy"
   }
 }

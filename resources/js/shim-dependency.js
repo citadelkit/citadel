@@ -1,13 +1,17 @@
 // setup-legacy-globals.js
 
-import './shim-jquery.js';
+import jQuery from './shim-jquery.js';
+
+import select2 from 'select2';
+import 'select2/dist/css/select2.min.css';
+
+window.$ = window.jQuery = jQuery;
+select2(window.$)
 
 import 'jquery-slimscroll';
-import 'jquery-loading-overlay';
 import 'dropzone';
 import 'summernote';
-import 'select2';
-import 'select2/dist/css/select2.min.css';
+import 'jquery-loading-overlay';
 
 // Bind plugins to jQuery
 import Inputmask from 'inputmask';
@@ -24,10 +28,6 @@ jQuery.fn.inputmask = function (maskOrAlias, opts) {
     const im = new Inputmask(maskOrAlias, opts);
     im.mask(this);
   });
-};
-
-jQuery.loadingOverlay = () => {
-  console.log("Use $('.body').loadingOverlay()");
 };
 
 

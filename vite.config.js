@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 import postcss from "@vituum/vite-plugin-postcss";
 import inject from "@rollup/plugin-inject";
+import legacy from "@vitejs/plugin-legacy";
 
 
 export default defineConfig({
@@ -15,6 +16,7 @@ export default defineConfig({
         }
     },
     plugins: [
+        legacy(),
         inject({
             include: ['**/*.js', '**/*.ts'],
             feather: 'feather-icons'
