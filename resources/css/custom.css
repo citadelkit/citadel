@@ -144,7 +144,6 @@ select.invalid {
     border-color: #ff7376;
 }
 
-
 .bg-breadcrumb {
     background-image: linear-gradient(to right, #00306a, #2aace3);
     color: #fff;
@@ -256,7 +255,6 @@ a {
 }
 
 /* OVERWRITE STYLES */
-
 
 .form-group {
     margin-bottom: 1rem;
@@ -674,7 +672,6 @@ a {
     grid-column: 1 / -1;
 }
 
-
 /* FLYOUT */
 
 .flyout-container {
@@ -691,8 +688,6 @@ a {
     }
 }
 
-
-
 /* MODAL */
 .modal .modal-body {
     padding: 0;
@@ -702,7 +697,6 @@ a {
     margin: 0;
 }
 
-
 /* CITADEL TABLE */
 
 table.citadel-table thead th {
@@ -710,12 +704,14 @@ table.citadel-table thead th {
     color: #1b1b1b !important;
 }
 
-
 /* overlay default*/
 .loading-overlay {
     /* position: relative; */
     z-index: 9999;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     display: grid;
     position: absolute;
@@ -725,10 +721,57 @@ table.citadel-table thead th {
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 6px solid #ccc;
-  border-top-color: #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+    width: 50px;
+    height: 50px;
+    border: 6px solid #ccc;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* SELECT2 */
+.select2-container--default .select2-selection--single {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    box-sizing: border-box;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    right: 0.75rem;
+    top: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1.5;
+    color: #212529;
+    padding-left: 0;
+    padding-right: 1.5rem;
+    margin-top: 0;
+    /* untuk reset */
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+@media (max-width: 576px) {
+    .select2-container--default .select2-selection--single {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.65rem;
+    }
 }

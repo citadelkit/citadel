@@ -14,7 +14,7 @@ export default function CitadelSelect(el, config = {}) {
 }
 
 const defaultConfig = {
-    multiple: true,
+    multiple: false,
     placeholder: "Choose an Option",
     closeOnSelect: true,
     ajax: null,
