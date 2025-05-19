@@ -12,4 +12,4 @@ window.$ = jQuery;
 window.jQuery = jQuery;
 window.jquery = jQuery;
 
-export { jQuery, $ }
+export default jQuery

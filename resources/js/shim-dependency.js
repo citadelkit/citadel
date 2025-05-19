@@ -6,6 +6,8 @@ import 'jquery-slimscroll';
 import 'jquery-loading-overlay';
 import 'dropzone';
 import 'summernote';
+import 'select2';
+import 'select2/dist/css/select2.min.css';
 
 // Bind plugins to jQuery
 import Inputmask from 'inputmask';

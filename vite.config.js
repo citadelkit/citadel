@@ -5,6 +5,9 @@ import inject from "@rollup/plugin-inject";
 
 
 export default defineConfig({
+    define: {
+        global: "window"
+    },
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "node_modules"),
