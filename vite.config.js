@@ -30,7 +30,6 @@ export default defineConfig({
         }
     },
     build: {
-        minify: false,
         manifest: true,
         outDir: "dist", // ⬅️ Fix: Build output should go here (not `src/public/`)
         rollupOptions: {
