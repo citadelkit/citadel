@@ -30,11 +30,11 @@
     "react-form-hook": "^0.0.1",
     "react-simple-wysiwyg": "^3.0.2",
     "sass": "^1.69.7",
-    "select2": "^4.1.0-rc.0",
     "typescript": "^5.4.2",
     "vite": "^4.5.14"
   },
   "dependencies": {
+    "select2": "^4.1.0-rc.0",
     "@gitzjoey/feather-font": "^1.0.0",
     "@mdi/font": "^7.4.47",
     "@selectize/selectize": "^0.15.2",

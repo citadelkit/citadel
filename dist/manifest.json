@@ -167,12 +167,12 @@
       "assets/feather-6920da09.ttf",
       "assets/feather-7f0825fa.svg"
     ],
-    "file": "assets/style-legacy-f03459b7.js",
+    "file": "assets/style-legacy-12f96379.js",
     "isEntry": true,
     "src": "resources/css/main-legacy.scss"
   },
   "resources/css/main.scss": {
-    "file": "assets/css/main-7fb8f9af.css",
+    "file": "assets/css/main-70b5a629.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
@@ -180,7 +180,7 @@
     "assets": [
       "assets/chevron-down-152ec8d7.svg"
     ],
-    "file": "assets/main-legacy-ea839b1d.js",
+    "file": "assets/main-legacy-68bd051e.js",
     "isEntry": true,
     "src": "resources/js/index-legacy.js"
   },
@@ -195,7 +195,7 @@
     "css": [
       "assets/css/index-60719d95.css"
     ],
-    "file": "assets/main-03c99db9.js",
+    "file": "assets/main-93658390.js",
     "isEntry": true,
     "src": "resources/js/index.js"
   },
