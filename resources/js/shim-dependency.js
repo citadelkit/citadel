@@ -2,12 +2,7 @@
 
 import jQuery from './shim-jquery.js';
 
-window.$ = window.jQuery = jQuery;
-import 'select2';
-import 'select2/dist/css/select2.min.css';
-
-
-import 'jquery-slimscroll';
+import 'jquery-slimscroll';  
 import 'dropzone';
 import 'summernote';
 import 'jquery-loading-overlay';
@@ -31,9 +26,9 @@ jQuery.fn.inputmask = function (maskOrAlias, opts) {
 
 
 import 'apexcharts';
-import 'prismjs/prism.js';
-import 'prismjs/plugins/toolbar/prism-toolbar.min.js';
-import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js';
+// import 'prismjs/prism.js';
+// import 'prismjs/plugins/toolbar/prism-toolbar.min.js';
+// import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js';
 
 import "@support/dash-ui/src/assets/css/theme.css";
 import '@support/dash-ui/src/assets/js/main.js';

@@ -5,9 +5,6 @@ import inject from "@rollup/plugin-inject";
 
 
 export default defineConfig({
-    define: {
-        global: "window"
-    },
     resolve: {
         alias: {
             "~": path.resolve(__dirname, "node_modules"),
@@ -33,6 +30,7 @@ export default defineConfig({
         }
     },
     build: {
+        minify: false,
         manifest: true,
         outDir: "dist", // ⬅️ Fix: Build output should go here (not `src/public/`)
         rollupOptions: {

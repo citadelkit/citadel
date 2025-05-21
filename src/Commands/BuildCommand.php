@@ -34,5 +34,6 @@ class BuildCommand extends Command
         $this->info('Copied manifest.json to '.public_path('citadelkit'));
 
         $this->call('vendor:publish', ['--tag' => 'citadel']);
+        $this->call('view:cache');
     }
 }
