@@ -8,6 +8,7 @@ class TextInput extends Component
 {
     protected $placeholder = "Text Input";
     protected $value = "";
+    protected $type = "text";
 
     public function placeholder($placeholder)
     {
@@ -15,14 +16,15 @@ class TextInput extends Component
         return $this;
     }
 
-    public function password()
-    {
-        return $this;
-    }
-
     public function value($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
         return $this;
     }
 
@@ -33,6 +35,7 @@ class TextInput extends Component
             "name" => $this->name,
             "title" => $this->title,
             "value" => $this->value,
+            "type" =>$this->type,
             "style" => [
                 "colspan" => $this->getColspanClass()
             ],
