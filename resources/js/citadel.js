@@ -1,15 +1,17 @@
 import './components';
-import { startObserver, initGlobalFunction, initSummerNote } from "./helpers";
+import { startObserver, initGlobalFunction, initSummerNote, initBootstrapComponents } from "./helpers";
 import { getPlugins } from "./helpers/plugins";
 
 (function (window, document, $) {
     // CitadelSpinner('document')
+    
     const reinstance = () => {
         $('.filepond').CFilepond()
         $('.offcanvas, .flyout').CFlyout()
         // $('.modal.popup').CModal()
 
         startObserver()
+        initBootstrapComponents()
         initGlobalFunction(window.$)
         initSummerNote(window.$)
         $('.citadel-button').CButton()
@@ -111,7 +113,7 @@ import { getPlugins } from "./helpers/plugins";
         return li;
     }
 
-    fetchSidebar();
+    // fetchSidebar();
 
     $("#sidebarToggle").on('click', function () {
         setTimeout(() => {

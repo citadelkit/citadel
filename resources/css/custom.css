@@ -775,3 +775,19 @@ table.citadel-table thead th {
         padding: 0.3rem 0.65rem;
     }
 }
+
+
+input[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+select[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+textarea[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}

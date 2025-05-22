@@ -322,6 +322,7 @@ function initBootstrapComponents() {
     bootstrapHelperOnce()
     // Dropdowns
     $('[data-bs-toggle="dropdown"]').each(function () {
+        console.log("DROPDOWN ", this)
         bootstrap.Dropdown.getInstance(this)?.dispose()
         bootstrap.Dropdown.getOrCreateInstance(this);
     });

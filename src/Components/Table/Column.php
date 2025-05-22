@@ -28,12 +28,7 @@ class Column extends Component
         $this->width = $width;
         return $this;
     }
-
     public function badge() {
-        // $this->value = fn($value) => Badge::make('_')
-        //     ->value($value);
-        // return $this;
-
         $this->value(function ($value) {
             if (is_string($value)) {
                 $arr = json_decode($value);
@@ -66,10 +61,13 @@ class Column extends Component
 
             $label = method_exists($value ?? '', 'label') ? $value->label() : $value;
             $color = method_exists($value ?? '', 'color') ? $value->color() : "light";
+            $slug = method_exists($value ?? '', 'slug') ? $value->slug() : $value;
+
             return view('citadel-component::badge', [
                 'text' => optional($value)->label() ?? (string) $value,
                 'color' => $color,
                 'fulltext' => $value,
+                'slug' => $slug,
             ])->render();
         });
         return $this;
