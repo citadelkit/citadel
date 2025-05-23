@@ -1,3 +1,5 @@
+import CitadelSwal from "../components/swal"
+
 export default function formSubmit(form_target, after_submit, getPlugins) {
     const $form = $(form_target)
 
@@ -32,14 +34,15 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
         'x-request-via': "citadel-form-wrapped"
     }
     // alert("Method" + method)
-    $.LoadingOverlay()
+    $('body').loadingOverlay()
     return $.ajax({
         url: url,
         headers: headers,
         type: method,
         data: JSON.stringify(data),
-        success: function (json) {
-            $.LoadingOverlay("remove");
+        success: function (res) {
+            const json = res.responseJSON
+            $('body').loadingOverlay("remove");
             if (json.swal) {
                 Swal.fire(json.swal).then(() => {
                     if (json.swal.redirectUrl) {
@@ -50,7 +53,11 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
                 return json
             }
             if (json.citadel) {
-                getPlugins(json.citadel).set(config.citadel).init()
+                if(json.citadel.component == "sweetalert") {
+                    CitadelSwal(json.citadel.args)
+                } else {
+                    getPlugins(json.citadel).set(config.citadel).init()
+                }
             } else if (json.status == "success") {
                 Swal.fire(config.swalSuccessMessage)
             } else {
@@ -66,14 +73,18 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
             return json
         },
         error: function (res) {
+            console.log("RES", res)
+            $('body').loadingOverlay("remove");
             const json = res.responseJSON
-            $.LoadingOverlay("remove");
             if (res.status == 422) {
-                showFormValidationError(json)
-                return;
-            }
-            if (json.citadel) {
-                getPlugins(json.citadel).set(config.citadel).init()
+                return showFormValidationError(json)
+            } else if (json.citadel) {
+                if(json.citadel.component == "sweetalert") {
+                    CitadelSwal(json.citadel.args)
+                } else {
+                    console.log("CITADEL PLUGINS READY", getPlugins, json.citadel, config.citadel)
+                    getPlugins(json.citadel).set(config.citadel).init()
+                }
             } else if (config.swalFatalErrorMessage) {
                 Swal.fire(config.swalFatalErrorMessage)
             } else if (json.error) {
@@ -97,7 +108,7 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
             }
         },
         complete: () => {
-            $.LoadingOverlay('remove')
+            $('body').loadingOverlay('remove')
         }
     });
 }

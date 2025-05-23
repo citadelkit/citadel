@@ -1,4 +1,5 @@
 import { getFormData } from "../helpers";
+import formSubmit from "../helpers/form_submit";
 import { getPlugins, handleComponent } from "../helpers/plugins";
 import { handleEvent } from "./button";
 
@@ -12,6 +13,10 @@ export default async function CitadelSwal(args) {
         $.LoadingOverlay('remove')
     }
     const isForm = $(config.html).find('form').length > 0;
+
+    console.log("ARGS", args)
+    console.log("FORM", isForm)
+
     if (config.sections?.script) {
         const className = "script-" + name;
         if ($("." + className).length === 0) {
@@ -70,18 +75,20 @@ export default async function CitadelSwal(args) {
             return false;
         }
     }
+
     Swal.fire({
         ...config,
         showLoaderOnConfirm: isForm,
         allowOutsideClick: () => !Swal.isLoading(),
         preConfirm: isForm ? preConfirm : undefined
     }).then((result) => {
-        console.log(result);
         if (result.dismiss == "cancel" || result.dismiss == "backdrop" || result.dismiss == "esc") {
             $('body').LoadingOverlay('remove')
             return
         }
-
+        if(isForm) {
+            return formSubmit($(config.html).find('form'), 'reload', getPlugins)
+        }
         if (after_confirm == "reload") {
             $('body').LoadingOverlay()
             window.location.reload()
@@ -96,7 +103,6 @@ export default async function CitadelSwal(args) {
                 'Content-Type': "application/json",
                 'X-REQUEST-VIA': "citadel-ajax"
             }
-            console.log();
             Pace.track(function () {
                 return new Promise((resolve, reject) => {
                     $.ajax({

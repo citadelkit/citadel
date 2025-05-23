@@ -89,8 +89,7 @@ function getPlugins(object, context) {
 
     return {
         init() {
-            // console.log("PLUGINS INIT ",this.available_plugins)
-
+            console.log("PLUGINS INIT ",this.available_plugins)
             for (const [key, value] of Object.entries(this.available_plugins)) {
                 this.available_plugins[key]?.init(this.context)
             }
