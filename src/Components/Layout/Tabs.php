@@ -23,12 +23,14 @@ class Tabs extends Wrapper
     {
         return match ($this->direction) {
             'column' => [
-                'header_direction' => 'd-flex',
+                'header_direction' => 'd-flex gap-3',
                 'nav_direction' => 'flex-column',
+                'content-class' => 'flex-grow-1'
             ],
             default => [
                 'header_direction' => '',
                 'nav_direction' => 'flex-row',
+                'content-class' => ''
             ],
         };
     }

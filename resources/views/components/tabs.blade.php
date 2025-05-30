@@ -6,7 +6,7 @@
             @endforeach
         </ul>
         <hr>
-        <div class="card-content">
+        <div class="card-content {{ $direction['content_class'] }}">
 
             <div class="tab-content" id="{{ $name }}-content">
                 @foreach ($schema as $key => $item)
