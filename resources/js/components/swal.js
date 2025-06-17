@@ -8,9 +8,10 @@ import { handleEvent } from "./button";
 export default async function CitadelSwal(args) {
     const { method, config, after_confirm, after_confirm_args, id, name } = args;
     if (config.view) {
-        $.LoadingOverlay()
+        $('body').loadingOverlay()
         config.html = await $.get(config.view)
-        $.LoadingOverlay('remove')
+        // $.LoadingOverlay('remove')
+        $('body').loadingOverlay('remove')
     }
     const isForm = $(config.html).find('form').length > 0;
 
@@ -90,7 +91,7 @@ export default async function CitadelSwal(args) {
             return formSubmit($(config.html).find('form'), 'reload', getPlugins)
         }
         if (after_confirm == "reload") {
-            $('body').LoadingOverlay()
+            $('body').loadingOverlay()
             window.location.reload()
         }
         if (after_confirm == "redirect") {
@@ -129,7 +130,7 @@ export default async function CitadelSwal(args) {
                             reject(res);
                         })
                         .always(function () {
-                            $.LoadingOverlay("hide");
+                            $.LoadingOverlay("remove");
                         });
                 });
             })
@@ -170,6 +171,7 @@ export default async function CitadelSwal(args) {
     })
 
     function afterConfirm({ after_confirm, after_confirm_args, redirectUrl, useEvent }) {
+        console.log('uwu')
         if (useEvent) {
             let def = useEvent;
             handleEvent(def, '')

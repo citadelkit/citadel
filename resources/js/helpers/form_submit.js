@@ -40,8 +40,8 @@ export function submitFormAction(url, method, data, config = {}, getPlugins) {
         headers: headers,
         type: method,
         data: JSON.stringify(data),
-        success: function (res) {
-            const json = res.responseJSON
+        success: function (json) {
+            // const json = res.responseJSON
             $('body').loadingOverlay("remove");
             if (json.swal) {
                 Swal.fire(json.swal).then(() => {
