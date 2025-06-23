@@ -344,7 +344,8 @@ function initBootstrapComponents() {
 
     // Collapse
     document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
-        new bootstrap.Collapse(el, { toggle: false });
+        new bootstrap.Collapse(el);
+        // { toggle: false }
     });
 }
 
