@@ -343,10 +343,9 @@ function initBootstrapComponents() {
     });
 
     // Collapse
-    document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
-        new bootstrap.Collapse(el);
-        // { toggle: false }
-    });
+    // document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
+    //     new bootstrap.Collapse(el, { toggle: false });
+    // });
 }
 
 export {
