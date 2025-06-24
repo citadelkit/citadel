@@ -12,8 +12,8 @@ console.log(window.jQuery, window.$)
 import "pace-js";
 
 
-// import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js"; conflict with collapse
-// window.bootstrap = bootstrap;
+import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js"; //conflict with collapse
+window.bootstrap = bootstrap;
 
 console.log('jQuery.event.global:', jQuery.event.global); // should be an object, not undefined
 

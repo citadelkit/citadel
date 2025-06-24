@@ -321,11 +321,11 @@ function initSummerNote($) {
 function initBootstrapComponents() {
     bootstrapHelperOnce()
     // Dropdowns
-    // $('[data-bs-toggle="dropdown"]').each(function () {
-    //     console.log("DROPDOWN ", this)
-    //     bootstrap.Dropdown.getInstance(this)?.dispose()
-    //     bootstrap.Dropdown.getOrCreateInstance(this);
-    // });
+    $('[data-bs-toggle="dropdown"]').each(function () {
+        console.log("DROPDOWN ", this)
+        bootstrap.Dropdown.getInstance(this)?.dispose()
+        bootstrap.Dropdown.getOrCreateInstance(this);
+    });
 
     // Tooltips
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
@@ -343,9 +343,9 @@ function initBootstrapComponents() {
     });
 
     // Collapse
-    // document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
-    //     new bootstrap.Collapse(el, { toggle: false });
-    // });
+    document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
+        new bootstrap.Collapse(el, { toggle: false });
+    });
 }
 
 export {
