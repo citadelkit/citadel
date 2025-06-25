@@ -38,7 +38,7 @@ export default async function CitadelSwal(args) {
     }
 
     const preConfirm = async () => {
-        const form = $('#swal2-content form');
+        const form = $('.swal2-popup form');
         if (!form) return
 
         let headers = {
