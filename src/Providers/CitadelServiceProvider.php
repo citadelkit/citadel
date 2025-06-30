@@ -58,7 +58,7 @@ class CitadelServiceProvider extends ServiceProvider
                 'citadel',
             );
         }
-        
+        $this->loadRoutesFrom(__DIR__ . '/../routes/filepond.php');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/components', 'citadel-component');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/templates', 'citadel-template');
         // $this->mergeConfigFrom(config_path('citadel.php'), 'citadel');
