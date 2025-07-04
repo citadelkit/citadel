@@ -1,4 +1,5 @@
 import { Toast } from "bootstrap";
+import 'toastr/build/toastr.min.css'; 
 
 export default function CitadelToast(response)
 {
