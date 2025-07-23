@@ -28,6 +28,8 @@ function init($el) {
         allowMultiple: config.multiple,
         maxFileSize: config.max_size || '100MB',
         allowGetFile: true,
+        allowDrop:true,
+        allowRemove:config.allowremove,
         labelMaxFileSizeExceeded: 'File too large',
         labelMaxFileSize: 'Maximum file size is {filesize}',
         acceptedFileTypes: config.accepted_file_types,

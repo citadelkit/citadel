@@ -19,6 +19,7 @@ class UploadInput extends Component
     protected $maxsize = "10MB";
     protected $hidden = false;
     protected $acceptedFileTypes = [];
+    protected $allowremove = true;
 
     public function files(string|array|null $filepaths = "")
     {
@@ -48,6 +49,15 @@ class UploadInput extends Component
         $this->maxsize = $maxsize;
         return $this;
     }
+
+    /*
+    default false
+    */
+    public function allowRemove($allowremove = false){
+        $this->allowremove = $allowremove;
+        return $this;
+    }
+
 
 
     /**example
@@ -107,6 +117,7 @@ class UploadInput extends Component
             'config' => [
                 'multiple' => $this->multiple,
                 'max_size' => $this->maxsize, //
+                'allowremove' =>$this->allowremove,
                 'accepted_file_types' => $this->acceptedFileTypes ?: null,
                 'accepted_file_labels' =>  !empty($this->fileTypeLabels())  ?  "Hanya Menerima ({$this->fileTypeLabels()}) "  : '',
                 'labels_file_type_not_allowed' => !empty($this->fileTypeLabels())  ?  "Selain ({$this->fileTypeLabels()}) tidak di izinkan."  :'',
