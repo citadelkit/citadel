@@ -4,11 +4,12 @@ namespace Citadel\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Routing\Controller as BaseController;
 
 
 class FilepondController extends BaseController {
@@ -36,11 +37,30 @@ class FilepondController extends BaseController {
 
     }
 
-    public function load(Request $request) {
-            return redirect($request->filepath);
-        // $filepath  = $request->filepath;
-        // return response()->file(Storage::path($filepath));
-        
+    public function load(Request $request)
+    {
+        $fileUrl = $request->filepath;
+        $appUrl = url('');
+
+        $fileHost = parse_url($fileUrl, PHP_URL_HOST);
+        $appHost = parse_url($appUrl, PHP_URL_HOST);
+
+        if ($fileHost === $appHost) {
+            return redirect($fileUrl);
+        }
+        // handle if doc from another website
+        try {
+            $response = Http::get($fileUrl);
+            // Get the actual content type from the response headers
+            $contentType = $response->header('Content-Type') ?? 'application/octet-stream';
+
+            return Response::make($response->body(), 200, [
+                'Content-Type' => $contentType,
+                'Access-Control-Allow-Origin' => '*',
+            ]);
+        } catch (\Exception $e) {
+            return response('File could not be loaded.', 404);
+        }
     }
 
     public function restore($filepath) {
