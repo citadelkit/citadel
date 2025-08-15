@@ -13,6 +13,7 @@ class Form extends Wrapper
         return [
             'name' => $this->name,
             'title' => $this->title,
+            'before_submit' => $this->before_submit, // now set by beforeSubmit()
             'style' => [
                 'class' => $this->class,
                 'columns' => $this->getColumnClass(),
