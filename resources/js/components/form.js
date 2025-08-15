@@ -20,6 +20,18 @@ export function CitadelFormWatchEvent() {
             const form_target = e.detail.form_name;
             const srcElement = e.detail.srcElement; // The Button
             const $form = $(`form#${form_target}.citadel-form`)
+
+            const beforeSubmit = $form.data('before-submit') || {};
+
+            if (beforeSubmit.confirm) {
+                const config = beforeSubmit.config || {};
+                const result = await Swal.fire(config);
+
+                if (!result.isConfirmed) return;
+            }
+
+
+
             const data = {
                 ...serializeFormData($form.serializeArray()),
                 raw: window.main_form_data

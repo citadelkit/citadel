@@ -6,6 +6,8 @@ use Citadel\Core\Wrapper;
 
 class Form extends Wrapper
 {
+    protected $before_submit = null;
+
     public function data()
     {
         return [
@@ -19,6 +21,27 @@ class Form extends Wrapper
                 'custom' => $this->style,
             ]
         ];
+    }
+
+     public function beforeSubmit(array $test)
+    {
+        if (empty($test)) {
+            $this->before_submit = null;
+        } else {
+            $this->before_submit = [
+                'confirm' => true,
+                'config' => [
+                    'icon' => $test['icon'] ?? 'info',
+                    'html' => $test['html']  ?? 'Are you sure you want to submit this?',
+                    'title' => $test['title'] ?? 'Please Confirm',
+                    'showCancelButton' => $test['showCancelButton'] ?? true,
+                    'confirmButtonText' => $test['confirmButtonText'] ?? 'Yes',
+                    'cancelButtonText' => $test['cancelButtonText'] ?? 'Cancel'
+                ]
+            ];
+        }
+
+        return $this; // allow chaining
     }
 
     public function backbone()
