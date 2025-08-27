@@ -132,7 +132,7 @@
     "src": "node_modules/summernote/dist/font/summernote.woff2"
   },
   "resources/css/main.scss": {
-    "file": "assets/css/main-b3b786cc.css",
+    "file": "assets/css/main-280502ba.css",
     "isEntry": true,
     "src": "resources/css/main.scss"
   },
