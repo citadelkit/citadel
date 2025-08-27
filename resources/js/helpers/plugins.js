@@ -4,7 +4,7 @@ import formSubmit from "./form_submit";
 const plugins = {
     ajax_request: {
         async init(context) {
-            $.LoadingOverlay('show')
+            $.loadingOverlay()
             const { url, method } = this.args;
             // const data = {};
 
@@ -25,7 +25,7 @@ const plugins = {
             }).fail(function () {
                 toastr['error'](`Failed Ajax Request to: ${url}`)
             }).always(function () {
-                $.LoadingOverlay('hide')
+                $.loadingOverlay('remove')
             })
             if (response.citadel) {
                 getPlugins(response.citadel).init()

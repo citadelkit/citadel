@@ -83,8 +83,8 @@ export default async function CitadelSwal(args) {
         allowOutsideClick: () => !Swal.isLoading(),
         preConfirm: isForm ? preConfirm : undefined
     }).then((result) => {
-        if (result.dismiss == "cancel" || result.dismiss == "backdrop" || result.dismiss == "esc") {
-            $('body').LoadingOverlay('remove')
+        if (result.dismiss == "cancel" || result.dismiss == "backdrop" || result.dismiss == "esc") {            
+            $('body').loadingOverlay('remove')
             return
         }
         if(isForm) {
@@ -130,7 +130,7 @@ export default async function CitadelSwal(args) {
                             reject(res);
                         })
                         .always(function () {
-                            $.LoadingOverlay("remove");
+                            $('body').loadingOverlay('remove')
                         });
                 });
             })
@@ -177,12 +177,12 @@ export default async function CitadelSwal(args) {
             handleEvent(def, '')
         }
         if (redirectUrl) {
-            $('body').LoadingOverlay()
+            $('body').loadingOverlay()
             window.location.href = redirectUrl
         }
         if (after_confirm == "none") return
         if (after_confirm == "reload") {
-            $('body').LoadingOverlay()
+            $('body').loadingOverlay()
             window.location.reload()
         }
     }

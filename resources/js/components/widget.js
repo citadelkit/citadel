@@ -36,13 +36,13 @@ async function handleReactive(el, name)
 async function old(el) {
     const { source } = el.attr('citadel-widget');
     const $content = el.find('.card-content')
-    $content.LoadingOverlay("show")
+    $content.loadingOverlay()
     const response = await $.get(source, function (response) {
         return response;
     }).fail(function () {
         toastr['error'](`Failed fetching widget from ${source}`)
         return "<Error/>"
     })
-    $content.LoadingOverlay("hide")
+    $content.loadingOverlay("remove")
     el.find('#description').html(response);
 }

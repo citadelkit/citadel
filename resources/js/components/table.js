@@ -203,7 +203,7 @@ function old($table) {
         configUrl.searchParams.append("citadel_component", name);
         configUrl.searchParams.append("origin_url", window.location.href);
         configUrl.searchParams.append("context", "get_config");
-        $table.LoadingOverlay('show')
+        $table.loadingOverlay()
         $.get(configUrl.href).done(data => {
             const { tableConfig, filters } = data;
 
@@ -267,7 +267,7 @@ function old($table) {
         }).fail(() => {
             console.error(`Failed to fetch table config from ${configUrl.href}`); // Add error handling
         }).always(() => {
-            $table.LoadingOverlay('hide')
+            $table.loadingOverlay('remove')
         });
 
         $table.data('current-url', tableUrl.href)

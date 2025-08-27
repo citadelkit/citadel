@@ -2,6 +2,7 @@
 
 import jQuery from './shim-jquery.js';
 
+// Ensure all plugins patch THIS jQuery
 import 'jquery-slimscroll';  
 import 'dropzone';
 import 'summernote';
@@ -12,11 +13,11 @@ import Inputmask from 'inputmask';
 import toastr from 'toastr';
 import Swal from 'sweetalert2';
 
-
 window.Swal = Swal;
 window.swal = Swal;
 window.toastr = toastr;
 
+// Attach Inputmask
 jQuery.fn.inputmask = function (maskOrAlias, opts) {
   return this.each(function () {
     const im = new Inputmask(maskOrAlias, opts);
