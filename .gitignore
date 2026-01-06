@@ -2,8 +2,7 @@
 /node_modules
 /public/hot
 /public/build/*
-!/public/build/assets
-!/public/build/manifest.json
+/public/build
 /public/storage
 /storage/*.key
 /storage/access_logs/
