@@ -24,9 +24,7 @@ a.middle-align {
     width: fit-content;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-    color: #fff !important;
-}
+
 
 /* summernote style */
 .note-toolbar {
@@ -116,15 +114,7 @@ th {
     background: #00b3ff90;
 }
 
-.select2-container--classic .select2-selection--single .select2-selection__rendered,
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: #000000;
-    background-color: unset !important;
-}
 
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-    color: #ababab !important;
-}
 
 .section-tab a.nav-link.completed:not(.active) {
     background-color: #1ec7ab;
@@ -423,11 +413,6 @@ a {
 .card.card-inverse input:-ms-input-placeholder,
 .card.card-inverse input:-moz-placeholder {
     color: #fff;
-}
-
-.select2-container--classic .select2-selection--multiple .select2-selection__rendered,
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    padding: 0;
 }
 
 .btn-info {
@@ -729,7 +714,26 @@ table.citadel-table thead th {
     animation: spin 1s linear infinite;
 }
 
-/* SELECT2 */
+/* SELECT2  comment cause conflict with node module*/ 
+/* .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #fff !important;
+}
+
+.select2-container--classic .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #000000;
+    background-color: unset !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #ababab !important;
+}
+
+.select2-container--classic .select2-selection--multiple .select2-selection__rendered,
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0;
+}
+
 .select2-container--default .select2-selection--single {
     display: block;
     width: 100%;
@@ -760,7 +764,6 @@ table.citadel-table thead th {
     padding-left: 0;
     padding-right: 1.5rem;
     margin-top: 0;
-    /* untuk reset */
 }
 
 .select2-container--default.select2-container--focus .select2-selection--single {
@@ -774,7 +777,7 @@ table.citadel-table thead th {
         font-size: 0.9rem;
         padding: 0.3rem 0.65rem;
     }
-}
+} */
 
 
 input[readonly] {
